@@ -1,0 +1,94 @@
+.search-bar {
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 45px;
+    border: none;
+    margin-bottom: 0;
+    padding: 6px 20px;
+    font-weight: 300;
+    margin-top: 20px;
+    outline: none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.get-started {
+    background-color: #FDF6E3;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 42px;
+    border: none;
+    margin-bottom: 0;
+    padding: 6px 15px;
+    font-weight: 500;
+    outline: none;
+    vertical-align: middle;
+    width: 100%;
+    color: #FF6B00;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.get-started:hover {
+    background-color: #ff9c55;
+    color: #fff;
+}
+
+.get-started > img {
+    width: 25px;
+}
+
+.recommended {
+    color: #8181A5;
+    font-size: 15px;
+    margin: 20px 0;
+    font-weight: 400;
+    margin-left: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.recommended:hover {
+    color: #373737;
+}
+
+.create-ticket {
+    margin-top: auto;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    background-image: url("../assets/still-help.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.create-ticket-btn {
+    background-color: #ffffff;
+    color: black;
+    padding: 14px;
+    border: none;
+    margin-top: 35px;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.create-ticket-btn:hover {
+    background-color: rgb(255, 220, 220);
+}
+
+.selector {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid #EFE5C9;
+}

@@ -15,8 +15,62 @@
     <link rel="icon" href="./assets/Official-Vector.ico" />
     <title>Teranga Help Center</title>
 
-</head>
+    <link rel="stylesheet" href="./style/general.css">
+    <link rel="stylesheet" href="./style/components.css">
+    <link rel="stylesheet" href="./style/responsive.css">
+
+    <script defer src="./script/index.js"></script>
+    <script defer src="./script/css.js"></script>
+    <script defer src="./script/index.js"></script>
+
+</head> 
 <body>
-    
+    <div class="lateral-menu">
+        <div class="user-infos">
+            <img src="./assets/default.png" class="user-logo">
+            <div class="user-name">Gabriel<span class="role">Discord User</span></div>
+            <img src="./assets/dots.svg" class="dots">
+        </div>
+        <h1 class="nav-title">Search for questions</h1>
+        <h3 class="nav-desc">Type a question or search keywords</h3>
+        <input type="text" class="search-bar" placeholder="Search...">
+        <div class="outline">
+            <button class="get-started">Getting Started<img src="./assets/gs.svg"></button>
+        </div>
+        <h3 class="recommended">Add teranga to your server</h3>
+        <h3 class="recommended">Get started with the dashboard</h3>
+        <h3 class="recommended">Get started with the embed manager</h3>
+        <h3 class="recommended">How to start your adventure ?</h3>
+        <h3 class="recommended">Customize your discord server</h3>
+        <div class="outline-sh">
+            <div class="create-ticket">
+                <h1 class="sh-title">Do you still need our help ?</h1>
+                <h3 class="sh-desc">Don’t waste your time, get in touch with us</h3>
+                <button class="create-ticket-btn">Create a ticket</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="tickets">
+        <div class="selector">
+            <ul class="elements">
+                <li><img src="./assets/ticket.svg">Tickets</li>
+                <li>In progress</li>
+                <li>Closed</li>
+                <li>Urgent</li>
+            </ul>
+            <div class="icos-1">
+                <img src="./assets/search-ico.svg">
+                <img src="./assets/plus-ico.svg">
+            </div>
+        </div>
+        <div class="selector-active"></div>
+        <section class="display-tickets">
+            <div class="actions">
+                <button class="new-case"><img src="./assets/plus.svg">New case</button>
+                <button class="sorting"><img src="./assets/sort.svg">Sort: Newest</button>
+            </div>
+        </section>
+    </section>
 </body>
 </html>
