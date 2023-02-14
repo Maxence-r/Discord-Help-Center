@@ -8,11 +8,35 @@
 body {
     background-color: #F5F6F7;
     background-image: url("../assets/background.svg");
+    background-repeat: no-repeat;
     backdrop-filter: blur(50px);
     padding: 30px;
     height: 100vh;
     display: flex;
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: #ff6b00 #ffffff;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #ff6b00;
+    border-radius: 0px;
+    border: 3px none #ffffff;
+  }
+
 
 .background  {
     width: 100%;
@@ -103,7 +127,7 @@ body {
 }
 
 .tickets {
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 10px 40px;
     width: 100%;
@@ -210,9 +234,16 @@ body {
 }
 
 .display-tickets {
+    display: none;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.display-messages {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    height: 100%;
 }
 
 .all-tickets {
@@ -334,4 +365,171 @@ body {
 
 .details > img {
     width: 20px;
+}
+
+#actions {
+    margin-left: 20px;
+}
+
+#close {
+    margin-left: auto;
+}
+
+.support-icon {
+    width: 50px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.support-name {
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
+
+.support-name span {
+    font-size: 15px;
+    font-weight: 400;
+    color: #949494;
+}
+
+.row-support {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.support-badge {
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+    margin-left: 5px;
+}
+
+.messages-container {
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 4px;
+    height: 100%;
+}
+
+.send-button {
+    margin-right: auto;
+    margin-left: auto;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.row-user-inputs {
+    margin-top: 20px;
+    min-height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ticker-infos-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ticket-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+}
+
+.ticket-badge:hover {
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.07);
+}
+
+.ticket-desc {
+    font-size: 17px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.ticket-user-desc {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 10px;
+    color: #949494;
+}
+
+.conv-icons {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.left-message {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.right-message {
+    display: flex;
+    height: 100%;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+}
+
+.right-box {
+    font-size: 15px;
+    font-weight: 300;
+    padding: 8px;
+    color: white;
+    background-color: #FF6B00;
+    max-width: 80%;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.left-box {
+    font-size: 15px;
+    height: 100%;
+    font-weight: 300;
+    padding: 8px;
+    background-color: #F5F6F7;
+    max-width: 80%;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.alert {
+    display: flex;
+    font-size: 14px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #FDF6E3;
+    color: #FF6B00;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+.message-alert {
+    margin-right: 10px;
+}
+
+#reduced {
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 40px;
 }
