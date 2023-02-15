@@ -96,16 +96,21 @@
         <div class="outline">
             <button onclick="toggleGetStarted()" class="get-started">Getting Started<img src="./assets/gs.svg"></button>
         </div>
-        <h3 class="recommended">Add teranga to your server</h3>
-        <h3 class="recommended">Get started with the dashboard</h3>
-        <h3 class="recommended">Get started with the embed manager</h3>
-        <h3 class="recommended">How to start your adventure ?</h3>
-        <h3 class="recommended">Customize your discord server</h3>
+        <div class="results">
+            <h3 class="recommended">Add teranga to your server</h3>
+            <h3 class="recommended">Get started with the dashboard</h3>
+            <h3 class="recommended">Get started with the embed manager</h3>
+            <h3 class="recommended">How to start your adventure ?</h3>
+            <h3 class="recommended">Customize your discord server</h3>
+        </div>
         <div class="outline-sh">
             <div class="create-ticket">
-                <h1 class="sh-title">Do you still need our help ?</h1>
-                <h3 class="sh-desc">Don’t waste your time, get in touch with us</h3>
-                <button class="create-ticket-btn">Create a ticket</button>
+                <h1 class="sh-title">How can I assist you?</h1>
+                <h3 class="sh-desc">We have a proven track record of solving problems</h3>
+                <div class="row-buttons">
+                    <button id="new-case-button" class="create-ticket-btn">Create a ticket</button>
+                    <button id="my-tickets" class="create-ticket-btn">My tickets</button>
+                </div>
             </div>
         </div>
     </div>
@@ -117,12 +122,12 @@
             <ul class="elements">
                 <li><img src="./assets/ticket.svg">Tickets</li>
                 <li>In progress</li>
-                <li>Closed</li>
-                <li>Urgent</li>
+                <li class="responsive">Closed</li>
+                <li class="responsive">Urgent</li>
             </ul>
             <div class="icos-1">
                 <img src="./assets/search-ico.svg">
-                <img src="./assets/plus-ico.svg">
+                <img src="./assets/refresh.svg">
             </div>
         </div>
         <div class="selector-active"></div>
@@ -135,6 +140,52 @@
                 <button class="sorting"><img src="./assets/sort.svg">Sort: Newest</button>
             </div>
             <div class="all-tickets">
+                <div class="ticket">
+                    <div class="infos-ticket">
+                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
+                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Incident / Report</span></h3>
+                        <img class="dots-ticket" src="./assets/dots.svg">
+                    </div>
+                    <h2 class="ticket-title">How to stop being gay (gay = Maxence) ?</h2>
+                    <p class="ticket-description">Thank you to my friend Tonin for creating Teranga. Your dedication and hard work have resulted in a truly remarkable piece of software.</p>
+                    <div class="ticket-footer">
+                        <img class="author-ticket" src="./assets/default.png">
+                        <h4 class="author-name">Lancelot Gabriel<span class="user-type">Discord User</span></h4>
+                        <div class="details">
+                            <div class="detail">
+                                <img src="./assets/chrono.svg">
+                                <h4 class="detail-text">8h ago</h4>
+                            </div>
+                            <div class="detail">
+                                <img src="./assets/chat.svg">
+                                <h4 class="detail-text">12</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticket">
+                    <div class="infos-ticket">
+                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
+                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Incident / Report</span></h3>
+                        <img class="dots-ticket" src="./assets/dots.svg">
+                    </div>
+                    <h2 class="ticket-title">How to stop being gay (gay = Maxence) ?</h2>
+                    <p class="ticket-description">Thank you to my friend Tonin for creating Teranga. Your dedication and hard work have resulted in a truly remarkable piece of software.</p>
+                    <div class="ticket-footer">
+                        <img class="author-ticket" src="./assets/default.png">
+                        <h4 class="author-name">Lancelot Gabriel<span class="user-type">Discord User</span></h4>
+                        <div class="details">
+                            <div class="detail">
+                                <img src="./assets/chrono.svg">
+                                <h4 class="detail-text">8h ago</h4>
+                            </div>
+                            <div class="detail">
+                                <img src="./assets/chat.svg">
+                                <h4 class="detail-text">12</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="ticket">
                     <div class="infos-ticket">
                         <img class="ticket-type-img" src="./assets/issue-ir.svg">
@@ -222,6 +273,33 @@
             <div class="row-user-inputs">
                 <textarea placeholder="Type your message here..." class="message-input"></textarea>
                 <img class="send-button" src="./assets/send.svg">
+            </div>
+        </section>
+
+        <!-- - - - - - - - - - - - - - - - - -->
+
+        <section class="display-new-case">
+            <div class="actions">
+                <div id="margin-low-low" class="outline">
+                    <div id="alert-case" class="alert">
+                        <img src="./assets/alert.svg" class="message-alert">Excepted: 2h
+                    </div>
+                </div>
+                <button id="cancel" class="new-case">
+                    <img id="reduced-ico" src="./assets/cancel.svg">Cancel
+                </button>
+            </div>
+            <div class="form">
+                <div class="row-header">
+                    <textarea class="issue-title" placeholder="Issue title, be specific in less than 100 characters"></textarea>
+                    <button id="categorie" class="sorting">
+                        <img id="reduced-ico" src="./assets/sort.svg">Category
+                    </button>
+                </div>
+                <textarea class="issue-desc" placeholder="Please explain your issue as specifically as possible. The more clearly you can communicate your issue to us, the faster we will be able to provide a solution."></textarea>
+                <button id="submit" class="new-case">
+                    <img id="reduced-ico" src="./assets/post.svg">Submit
+                </button>
             </div>
         </section>
     </section>

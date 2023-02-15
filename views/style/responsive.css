@@ -25,7 +25,7 @@
         flex-direction: column;
         width: 100%;
         min-width: 100%;
-        height: 100%;
+        height: calc(100vh - 50px);
         z-index: 100;
         background-color: #F5F6F7;
     }
@@ -34,6 +34,20 @@
     }
     .open-menu {
         display: flex;
+    }
+    .tickets {
+        margin-left: 0;
+        padding: 0;
+        padding-inline: 0px;
+    }
+    .details {
+        display: none;
+    }
+    .responsive {
+        display: none !important;
+    }
+    .nav-title {
+        margin-top: 20px;
     }
 }
     

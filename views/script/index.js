@@ -43,7 +43,14 @@ function toggleGetStarted() {
     document.querySelector('.get-started-popup').classList.toggle('open-modal')
 }
 
-
+let Boolean = false
 function toggleLateral() {
+    Boolean = !Boolean
+    let angle = Boolean ? 180 : 0
+    console.log(angle)
+    document.querySelector('.open-icon').style.transform = `rotate(${angle}deg)`;
     document.querySelector('.lateral-menu').classList.toggle('open-lateral')
 }
+
+
+    
