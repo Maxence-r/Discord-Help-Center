@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 // Import routes
-
+const DiscordLogin = require('./routes/DiscordLogin');
 // Definition des outils
 app.use(cookieParser());
 app.use(express.json());
@@ -19,8 +19,15 @@ mongoose.connect('mongodb://127.0.0.1:27017/support-center',
 .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
+app.use('/api/discord', DiscordLogin);
+
 app.get('/', (req, res) => {
-    res.render('../views/index');
+    console.log(req.cookies.token);
+    if (!req.cookies.token) {
+        res.redirect('https://discord.com/api/oauth2/authorize?client_id=839526461349822485&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fdiscord&response_type=code&scope=identify%20guilds%20email');
+    } else {
+        res.sendFile(__dirname + '/views/main.html');
+    }
 });
 
 
