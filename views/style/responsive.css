@@ -5,18 +5,11 @@
 }
 
 @media screen and (max-width: 1200px) {
-    .lateral-menu {
-        width: 100%;
-    }
-    .tickets {
-        display: none;
-    }
     .article {
-       display: none;
+        margin-left: 0;
     }
     .tuto {
         width: 100%;
-        height: 100%;
         flex-direction: column;
     }
     #tuto-youtube {
@@ -24,7 +17,23 @@
         height: 40%;
     }
     .lateral-menu {
+        padding: 10px;
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
         min-width: 100%;
+        height: 100%;
+        z-index: 100;
+        background-color: #F5F6F7;
+    }
+    .lateral-menu {
+        transform: translateX(-100%);
+    }
+    .open-menu {
+        display: flex;
     }
 }
     

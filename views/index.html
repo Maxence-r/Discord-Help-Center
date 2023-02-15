@@ -21,10 +21,13 @@
 
     <script defer src="./script/index.js"></script>
     <script defer src="./script/css.js"></script>
-    <script defer src="./script/index.js"></script>
+    <script defer src="./script/crud.js"></script>
 
 </head> 
 <body>
+    <!-- - - - - - - - - - - - - - - - - -->
+
+    <div onclick="toggleLateral()" class="open-menu"><img src="./assets/open.svg" class="open-icon"></div>
 
     <!-- - - - - - - - - - - - - - - - - -->
 
@@ -39,7 +42,7 @@
     <div class="get-started-popup">
         <div class="tuto">
             <div id="tuto-youtube" class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/hVF2rc_F64s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="get-started-id" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="progress-container">
                 <h1 class="tuto-title">Learning Path</h1>
@@ -51,7 +54,7 @@
                     <img src="./assets/completed.svg" class="progress-icon "> 
                     <h3 class="step-desc">2. Learn more about categories</h3>
                 </div>
-                <div id="current" class="step">
+                <div class="step">
                     <img src="./assets/completed.svg" class="progress-icon default"> 
                     <h3 class="step-desc next">3. Learn more about embed manager</h3>
                 </div>
@@ -72,7 +75,7 @@
                     <h3 class="step-desc next">7. Go beyond the limit</h3>
                 </div>
                 <div class="tuto-actions">
-                    <button class="tuto-close">Close</button>
+                    <button onclick="toggleGetStarted()" class="tuto-close">Close</button>
                     <button class="tuto-continue">Continue</button>
                 </div>
             </div>
@@ -91,7 +94,7 @@
         <h3 class="nav-desc">Type a question or search keywords</h3>
         <input type="text" class="search-bar" placeholder="Search...">
         <div class="outline">
-            <button class="get-started">Getting Started<img src="./assets/gs.svg"></button>
+            <button onclick="toggleGetStarted()" class="get-started">Getting Started<img src="./assets/gs.svg"></button>
         </div>
         <h3 class="recommended">Add teranga to your server</h3>
         <h3 class="recommended">Get started with the dashboard</h3>
@@ -231,6 +234,8 @@
         <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/hVF2rc_F64s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
+        <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
         <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
         <div id="margin-low" class="outline">
             <div class="alert"><img src="./assets/alert.svg" class="message-alert">Make sure to deploy your blueprint before testing it, click on deploy and wait until it show 'deployed'</div>
