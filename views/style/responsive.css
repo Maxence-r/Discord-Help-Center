@@ -11,5 +11,20 @@
     .tickets {
         display: none;
     }
+    .article {
+       display: none;
+    }
+    .tuto {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+    }
+    #tuto-youtube {
+        width: 100%;
+        height: 40%;
+    }
+    .lateral-menu {
+        min-width: 100%;
+    }
 }
     

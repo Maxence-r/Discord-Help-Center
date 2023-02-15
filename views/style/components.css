@@ -208,3 +208,55 @@
     font-weight: 600;
     color: #FF6B00;
 }
+
+.art-lower-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #8181A5;
+}
+
+.video-container {
+    position: relative;
+    margin-top: 10px;
+    padding-bottom: calc(56.25% * 0.75); /* 16:9 */
+    width: 75%;
+    height: 0;
+  }
+  
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.art-paragraph {
+    font-size: 16px;
+    font-weight: 300;
+    color: #373737;
+    margin-top: 10px;
+}
+
+.get-started-popup {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tuto {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: #fff;
+    border-radius: 4px;
+}
