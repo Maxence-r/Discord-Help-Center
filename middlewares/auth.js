@@ -1,3 +1,5 @@
+const { adminIds } = require('../config.json');
+
 const auth = (req, res, next) => {
     if (!req.cookies.token) {
         return res.status(401).json({error: 'Unauthorized'});

@@ -89,7 +89,7 @@
         <div class="user-infos">
             <img src="./assets/default.png" class="user-logo">
             <div class="user-name"><span id="user-name">User</span><span class="role">Discord User</span></div>
-            <img src="./assets/logout.svg" class="dots">
+            <img id="logout" src="./assets/logout.svg" class="dots">
         </div>
         <h1 class="nav-title">Search for questions</h1>
         <h3 class="nav-desc">Type a question or search keywords</h3>
@@ -172,7 +172,7 @@
             </div>
             <span id="auto" class="loader"></span>
             <div class="row-user-inputs">
-                <textarea placeholder="Type your message here..." class="message-input"></textarea>
+                <input placeholder="Type your message here..." class="message-input"></input>
                 <img class="send-button" src="./assets/send.svg">
             </div>
         </section>
@@ -220,5 +220,7 @@
             <div class="alert"><img src="./assets/alert.svg" class="message-alert">Make sure to deploy your blueprint before testing it, click on deploy and wait until it show 'deployed'</div>
         </div>
     </section>
+    
+<script src="/socket.io/socket.io.js"></script>
 </body>
 </html>

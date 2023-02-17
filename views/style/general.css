@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Sora', sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -445,6 +446,7 @@ body {
 .row-user-inputs {
     margin-top: 20px;
     min-height: 70px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -501,6 +503,7 @@ body {
 }
 
 .right-box {
+    word-break: break-all;
     font-size: 15px;
     font-weight: 300;
     height: 100%;
@@ -513,6 +516,7 @@ body {
 }
 
 .left-box {
+    word-break: break-all;
     font-size: 15px;
     height: 100%;
     font-weight: 300;
@@ -730,4 +734,12 @@ body {
     display: none;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#logout {
+    cursor: pointer;
+}
+
+.type-message {
+    width: 120px;
 }

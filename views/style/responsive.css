@@ -61,5 +61,15 @@
     .send-button {
         min-width: 18%;
     }
+    .actions {
+        min-height: 50px;
+    }
+    .messages-container {
+        height: 100%;
+    }
+    .row-user-inputs {
+        min-height: 70px;
+        margin-bottom: 70px;
+    }
 }
     
