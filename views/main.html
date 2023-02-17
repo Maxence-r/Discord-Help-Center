@@ -85,10 +85,11 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <div class="lateral-menu">
+        <button class="login">Login</button>
         <div class="user-infos">
             <img src="./assets/default.png" class="user-logo">
             <div class="user-name"><span id="user-name">User</span><span class="role">Discord User</span></div>
-            <img src="./assets/dots.svg" class="dots">
+            <img src="./assets/logout.svg" class="dots">
         </div>
         <h1 class="nav-title">Search for questions</h1>
         <h3 class="nav-desc">Type a question or search keywords</h3>
@@ -120,14 +121,14 @@
     <section class="tickets">
         <div class="selector">
             <ul class="elements">
-                <li><img src="./assets/ticket.svg">Tickets</li>
-                <li>In progress</li>
-                <li class="responsive">Closed</li>
-                <li class="responsive">Urgent</li>
+                <li id="open-ticket"><img src="./assets/ticket.svg">Tickets</li>
+                <li class="admin">In progress</li>
+                <li id="closed-ticket">Closed</li>
+                <li class="responsive admin">Urgent</li>
             </ul>
             <div class="icos-1">
                 <img src="./assets/search-ico.svg">
-                <img src="./assets/refresh.svg">
+                <img class="responsive" src="./assets/refresh.svg">
             </div>
         </div>
         <div class="selector-active"></div>
@@ -136,102 +137,12 @@
 
         <section class="display-tickets">
             <div class="actions">
-                <button class="new-case"><img src="./assets/plus.svg">New case</button>
+                <button id="new-case" class="new-case interact"><img src="./assets/plus.svg">New case</button>
                 <button class="sorting"><img src="./assets/sort.svg">Sort: Newest</button>
             </div>
             <div class="all-tickets">
-                <div class="ticket">
-                    <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
-                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Incident / Report</span></h3>
-                        <img class="dots-ticket" src="./assets/dots.svg">
-                    </div>
-                    <h2 class="ticket-title">How to stop being gay (gay = Maxence) ?</h2>
-                    <p class="ticket-description">Thank you to my friend Tonin for creating Teranga. Your dedication and hard work have resulted in a truly remarkable piece of software.</p>
-                    <div class="ticket-footer">
-                        <img class="author-ticket" src="./assets/default.png">
-                        <h4 class="author-name">Lancelot Gabriel<span class="user-type">Discord User</span></h4>
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">8h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">12</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ticket">
-                    <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
-                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Incident / Report</span></h3>
-                        <img class="dots-ticket" src="./assets/dots.svg">
-                    </div>
-                    <h2 class="ticket-title">How to stop being gay (gay = Maxence) ?</h2>
-                    <p class="ticket-description">Thank you to my friend Tonin for creating Teranga. Your dedication and hard work have resulted in a truly remarkable piece of software.</p>
-                    <div class="ticket-footer">
-                        <img class="author-ticket" src="./assets/default.png">
-                        <h4 class="author-name">Lancelot Gabriel<span class="user-type">Discord User</span></h4>
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">8h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">12</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ticket">
-                    <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
-                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Incident / Report</span></h3>
-                        <img class="dots-ticket" src="./assets/dots.svg">
-                    </div>
-                    <h2 class="ticket-title">How to stop being gay (gay = Maxence) ?</h2>
-                    <p class="ticket-description">Thank you to my friend Tonin for creating Teranga. Your dedication and hard work have resulted in a truly remarkable piece of software.</p>
-                    <div class="ticket-footer">
-                        <img class="author-ticket" src="./assets/default.png">
-                        <h4 class="author-name">Lancelot Gabriel<span class="user-type">Discord User</span></h4>
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">8h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">12</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ticket">
-                    <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-pi.svg">
-                        <h3>Ticket #5bf142459b72e12b2b1b2cd<span class="ticket-type">Payement Related</span></h3>
-                        <img class="dots-ticket" src="./assets/dots.svg">
-                    </div>
-                    <h2 class="ticket-title">Please refund me this fucking premium !</h2>
-                    <p class="ticket-description">Fuck all the staff, this fuking premium is fucking bad, fuck, fuck. REFUND ME OR GAY, REFUND OR CONSEQUENCE, NOW FUKCING TEAM </p>
-                    <div class="ticket-footer">
-                        <img class="author-ticket" src="./assets/default2.png">
-                        <h4 class="author-name">Maxence<span class="user-type">Discord User</span></h4>
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">1h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">5</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
         </section>
 
@@ -239,10 +150,10 @@
 
         <section class="display-messages">
             <div class="actions">
-                <img class="support-icon" src="./assets/default2.png">
-                <h3 class="support-name"><div class="row-support">Maxence<img class="support-badge" src="./assets/badge-tt.svg"></div><span class="support-role">Discord User</span></h3>
-                <button id="close" class="new-case"><img src="./assets/trash.svg">Close Ticket</button>
-                <button id="actions" class="sorting"><img src="./assets/sort.svg">Actions</button>
+                <img class="support-icon" src="./assets/logo.svg">
+                <h3 class="support-name"><div class="row-support">Teranga<img title="Teranga Team" class="support-badge" src="./assets/badge-tt.svg"></div><span class="support-role">Teranga Team</span></h3>
+                <button id="close-ticket" class="new-case"><img src="./assets/trash.svg">Close Ticket</button>
+                <button id="closed" class="sorting interact"><img src="./assets/close.svg">Close</button>
             </div>
             <div class="messages-container">
                 <div class="tickets-infos">
@@ -254,22 +165,12 @@
                 </div>
                 <div class="messages">
                    <div class="left-message">
-                        <img src="./assets/default2.png" class="conv-icons">
-                        <div class="left-box">Dear, Toninja our team received your problem, you should except an answer in about 5 hours, make sure to read articles and try to find answer to your question we also have a global support server if you need global help</div>
-                   </div>
-                   <div class="right-message">
-                        <img src="./assets/default.png" class="conv-icons">
-                        <div class="right-box">Thank you for your help, I would like to add some information to my case here is: I am gay, I have this and this, I love cat, and my discord id is way to beautiful, and check out my youtube channel, and if you still have time to please proceed to lorep ipsum dolor item atsit a vraimejnt eally rht x !</div>
-                    </div>
-                    <div id="reduced" class="outline">
-                        <div class="alert"><img src="./assets/alert.svg" class="message-alert">Your ticket has been placed in the urgent queue, we’re doing our best to solve your problem </div>
-                    </div>
-                    <div class="left-message">
-                        <img src="./assets/default2.png" class="conv-icons">
-                        <div class="left-box">Thank my indian friend !</div>
+                        <img src="./assets/logo.svg" class="conv-icons">
+                        <div id="intro-message" class="left-box">Here to help you !</div>
                    </div>
                 </div>
             </div>
+            <span id="auto" class="loader"></span>
             <div class="row-user-inputs">
                 <textarea placeholder="Type your message here..." class="message-input"></textarea>
                 <img class="send-button" src="./assets/send.svg">
@@ -285,7 +186,7 @@
                         <img src="./assets/alert.svg" class="message-alert">Excepted: 2h
                     </div>
                 </div>
-                <button id="cancel" class="new-case">
+                <button id="cancel" class="new-case interact">
                     <img id="reduced-ico" src="./assets/cancel.svg">Cancel
                 </button>
             </div>
@@ -310,7 +211,7 @@
         <h1 class="art-title">How to hahah toninjalabenja on valorant ?</h1>
         <h3 class="art-lower-title">The best and easy way do it is by using your haha obviously</h3>
         <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/hVF2rc_F64s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
         <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>

@@ -197,7 +197,8 @@
 }
 
 .messages {
-    padding: 12px;
+    padding-top: 12px;
+    padding-inline: 12px;
     max-height: 475px;
     display: flex;
     flex-direction: column;
@@ -283,6 +284,8 @@
 }
 
 .display-new-case {
+    display: none;
+    flex-direction: column;
     margin-top: 20px;
     overflow-y: scroll;
 }
@@ -318,4 +321,46 @@
     font-weight: 400;
     margin-right: 10px;
     color: #717171;
+}
+
+.login {
+    height: 50px;
+    border: 1px solid #FF6B00;
+    border-radius: 4px;
+    color: #FF6B00;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    background: transparent;
+}
+
+.login:hover {
+    background-color: #FF6B00;
+    color: #fff;
+}
+
+.loader {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+.hidden {
+    display: none !important;
 }

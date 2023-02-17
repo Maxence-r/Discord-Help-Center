@@ -49,5 +49,17 @@
     .nav-title {
         margin-top: 20px;
     }
+    .support-icon {
+        display: none;
+    }
+    .support-name {
+        display: none;
+    }
+    .new-case {
+        margin-left: 0 !important;
+    }
+    .send-button {
+        min-width: 18%;
+    }
 }
     

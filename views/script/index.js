@@ -52,5 +52,25 @@ function toggleLateral() {
     document.querySelector('.lateral-menu').classList.toggle('open-lateral')
 }
 
+document.querySelector('.login').addEventListener('click', function () {
+    window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=839526461349822485&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fdiscord&response_type=code&scope=identify%20guilds%20email'
+})
+ 
+
+document.querySelector('.dots').addEventListener('click', function () {
+    console.log('click')
+    fetch('/api/discord/logout', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(function (response) {
+        if (response.ok) {
+            window.location.href = '/'
+        }
+    })
+})
+
+
 
     

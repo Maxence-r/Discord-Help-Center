@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 router.get('/', async (req, res) => {
     const request = await fetch('http://localhost:3000/api/discord/exchange', {
         method: 'POST',
@@ -52,6 +51,11 @@ router.post('/infos', async (req, res) => {
     }
     res.json(await response.json());
 });
+
+router.get('/logout', async (req, res) => {
+    res.clearCookie('token').redirect('back');
+});
+
 
 
 module.exports = router;
