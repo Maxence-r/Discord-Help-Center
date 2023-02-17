@@ -7,11 +7,15 @@ const ticketSchema = mongoose.Schema({
     },
     title: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 100,
+        minLength: 1
     },
     description: {
         type: String,
         required: true,
+        maxLength: 400,
+        minLength: 1
     }, 
     open: {
         type: Boolean,

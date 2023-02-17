@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { botToken } = require('../config.json');
 
 router.get('/', async (req, res) => {
     const request = await fetch('http://localhost:3000/api/discord/exchange', {
@@ -56,6 +57,17 @@ router.get('/logout', async (req, res) => {
     res.clearCookie('token').redirect('back');
 });
 
-
+router.post('/get', async (req, res) => {
+    console.log(botToken);
+    const response = await fetch(`https://discord.com/api/v10/users/${req.body.id}`, {
+        headers: {
+            authorization: `Bot ${botToken}`
+        }
+    });
+    if (!response.ok) {
+        res.status(response.status);
+    }
+    res.json(await response.json());
+});
 
 module.exports = router;

@@ -6,6 +6,7 @@ function registerSocket() {
     }
     const socket = io();
     socketListener = socket.on(`${localStorage.getItem('ticketId')}-newMessage`, (message) => {
+        user = message.user;
         message = message.message;
         if (message.owner != localStorage.getItem('ticketIdCreator')) {
         document.querySelector('.messages-container').innerHTML += `
@@ -19,7 +20,7 @@ function registerSocket() {
             document.querySelector('.messages-container').innerHTML += `
             <div class="messages">
                 <div class="right-message">
-                    <img src="${localStorage.getItem('avatar')}" class="conv-icons">
+                    <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" class="conv-icons">
                     <div class="right-box">${message.content}</div>
                 </div>
             </div>`;
@@ -29,44 +30,68 @@ function registerSocket() {
     let isTyping = false;
 
     socket.on(`${localStorage.getItem('ticketId')}-typing`, (user) => {
-        user = user.user;
     if (user !== localStorage.getItem('id')) {
         if (!isTyping) {
-        const typingMessage = `
+            const typingMessage = `
             <div class="messages typing">
-            <div class="left-message">
-                <img src="./assets/logo.svg" class="conv-icons">
-                <div class="left-box type-message"><span class="loader-typing"></span></div>
+                <div class="left-message">
+                    <img src="./assets/logo.svg" class="conv-icons">
+                    <div class="left-box type-message">
+                    <div class="loaderTyping">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
             </div>`;
-        document.querySelector('.messages-container').insertAdjacentHTML('beforeend', typingMessage);
-        isTyping = true;
-        setTimeout(() => {
-            document.querySelector('.typing').remove();
-            isTyping = false;
-        }, 3000);
-        document.querySelector('.messages-container').scrollTo(0, document.querySelector('.messages-container').scrollHeight);
+            document.querySelector('.messages-container').insertAdjacentHTML('beforeend', typingMessage);
+            isTyping = true;
+            setTimeout(() => {
+                if(document.querySelector('.typing')) document.querySelector('.typing').remove();
+                isTyping = false;
+            }, 5000);
+        
         }
-    }
+    } 
+    document.querySelector('.messages-container').scrollTo(0, document.querySelector('.messages-container').scrollHeight);
     });
 }
 
 
 
-document.querySelector('.message-input').addEventListener('input', () => {
+const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.apply(null, args);
+      }, delay);
+    };
+  };
+  
+  const messageInput = document.querySelector('.message-input');
+  
+  const sendTypingRequest = () => {
     fetch('/ticket/typing', {
-        method: 'POST',
-        body: JSON.stringify({ ticketId: localStorage.getItem('ticketId') }),
-        headers: { 'Content-Type': 'application/json' }
+      method: 'POST',
+      body: JSON.stringify({ ticketId: localStorage.getItem('ticketId') }),
+      headers: { 'Content-Type': 'application/json' }
     })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.message) {
-                console.log(data);
-            }
+      .then(response => response.json())
+      .then(data => {
+        if (!data.message) {
+          console.log(data);
         }
-    );
-});
+      });
+  };
+  
+  const debouncedSendTypingRequest = debounce(sendTypingRequest, 500);
+  
+  messageInput.addEventListener('input', debouncedSendTypingRequest);
+  
 
 
 function getUserInfo() {
@@ -197,16 +222,25 @@ document.getElementById('closed-ticket').addEventListener('click', () => {
         });
 });
 
+
+document.querySelector('.close-modal-infos').addEventListener('click', () => {
+    document.querySelector('.messages-container').style.display = 'block';
+});
+
 /* MANAGE ALL INTERACTIONS */
-reference = {
+const reference = {
     'new-case': ['display-new-case'],
     'cancel': ['display-tickets'],
-    'closed': ['display-tickets', 'selector', 'selector-active']
+    'closed': ['display-tickets', 'selector', 'selector-active'],
+    'infos': ['infos-modal'],
+    'close-discord-infos': ['row-user-inputs'],
 }
-config = {
+const config = {
     'new-case': ['display-tickets'],
     'cancel': ['display-new-case'],
-    'closed': ['display-messages']
+    'closed': ['display-messages'],
+    'infos': ['messages-container', 'row-user-inputs'],
+    'close-discord-infos': ['infos-modal'],
 }
 
 function refreshInteract() {
@@ -249,10 +283,29 @@ function openTicket(id) {
     .then(data => {
         localStorage.setItem('ticketId', data._id);
         localStorage.setItem('ticketIdCreator', data.owner);
-        registerSocket();
-        LoadMessages();
-        document.querySelector('.ticket-desc').innerHTML = `${data.title}`;
-        document.querySelector('.ticket-user-desc').innerHTML = `${data.description}`;
+        fetch('/api/discord/get', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: data.owner })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.banner) {
+                    console.log('banner');
+                    document.querySelector('.banner').style.backgroundImage = `url("https://cdn.discordapp.com/banners/${data.id}/${data.banner}.png?size=600")`
+                } else {
+                    console.log('color');
+                    document.querySelector('.banner').style.backgroundColor = `${data.banner_color ? data.banner_color : '#7289da'}`;
+                } 
+                document.querySelector('.user-ticket-info-avatar').src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=128`;
+                document.querySelector('.user-ticket-info-name').innerHTML = data.username;
+                document.querySelector('.user-ticket-info-discriminator').innerHTML = `#${data.discriminator}`;
+                registerSocket();
+                LoadMessages(data);
+            });
+        document.querySelector('.ticket-desc').innerHTML = data.title;
+        document.querySelector('.ticket-user-desc').innerHTML = data.description;
         if (data.open == false) {
             document.querySelector('.row-user-inputs').style.display = 'none';
         }
@@ -265,10 +318,22 @@ document.getElementById('open-ticket').addEventListener('click', () => {
 
 
 
+document.querySelector('.send-button').addEventListener('click', () => {
+    sendMessage();
+    sendMessage();
+    document.querySelector('.message-input').value = '';
+    if(document.querySelector('.type-message')) {
+        document.querySelector('.type-message').remove();
+    }
+});
+
 document.querySelector('.message-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         sendMessage();
         document.querySelector('.message-input').value = '';
+        if(document.querySelector('.type-message')) {
+            document.querySelector('.type-message').remove();
+        }
     }
 });
 
@@ -286,11 +351,12 @@ function sendMessage() {
                 if (data.error) {
                     alert(data.error);
                 }
+                if (document.querySelector('.type-message')) document.querySelector('.type-message').remove();
             });
     }
 }
 
-function LoadMessages() {
+function LoadMessages(userInfos) {
     const ticketId = localStorage.getItem('ticketId');
     fetch(`/ticket/messages`, {
         method: 'POST',
@@ -324,7 +390,7 @@ function LoadMessages() {
                     document.querySelector('.messages-container').innerHTML += `
                     <div class="messages">
                         <div class="right-message">
-                            <img src="${localStorage.getItem('avatar')}" class="conv-icons">
+                            <img src="https://cdn.discordapp.com/avatars/${userInfos.id}/${userInfos.avatar}.png?size=128" class="conv-icons">
                             <div class="right-box">${message.content}</div>
                         </div>
                     </div>

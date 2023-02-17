@@ -152,6 +152,7 @@
             <div class="actions">
                 <img class="support-icon" src="./assets/logo.svg">
                 <h3 class="support-name"><div class="row-support">Teranga<img title="Teranga Team" class="support-badge" src="./assets/badge-tt.svg"></div><span class="support-role">Teranga Team</span></h3>
+                <button id="infos" class="sorting interact"><img id="no-padding" src="./assets/infos.svg"></button>
                 <button id="close-ticket" class="new-case"><img src="./assets/trash.svg">Close Ticket</button>
                 <button id="closed" class="sorting interact"><img src="./assets/close.svg">Close</button>
             </div>
@@ -170,6 +171,17 @@
                    </div>
                 </div>
             </div>
+            <div class="infos-modal">
+                <div class="banner"></div>
+                <div class="user-ticket-infos">
+                    <img class="user-ticket-info-avatar" src="./assets/default.png">
+                    <div class="row-low-detail">
+                        <h3 class="user-ticket-info-name">User</h3>
+                        <h3 class="user-ticket-info-discriminator">Discord User</h3>
+                    </div>
+                </div>
+                <button id="close-discord-infos" class="close-modal-infos interact">Close</button>
+            </div>
             <span id="auto" class="loader"></span>
             <div class="row-user-inputs">
                 <input placeholder="Type your message here..." class="message-input"></input>
@@ -183,7 +195,7 @@
             <div class="actions">
                 <div id="margin-low-low" class="outline">
                     <div id="alert-case" class="alert">
-                        <img src="./assets/alert.svg" class="message-alert">Excepted: 2h
+                        <img src="./assets/alert.svg" class="message-alert">Expected: 2h
                     </div>
                 </div>
                 <button id="cancel" class="new-case interact">

@@ -6,8 +6,10 @@ const Ticket = require('../models/ticket');
 const Message = require('../models/message');
 const securityLayer = require('../middlewares/securityLayer');
 const { adminIds } = require('../config.json');
+const messageChecker = require('../middlewares/messageContent');
+const ticketChecker = require('../middlewares/ticketChecker');
 
-router.post('/', auth, limit, async (req, res) => {
+router.post('/', auth, limit, ticketChecker, async (req, res) => {
     const ticket = new Ticket({
         owner: req.user.id,
         title: req.body.title,
@@ -17,8 +19,7 @@ router.post('/', auth, limit, async (req, res) => {
         await ticket.save();
         res.status(201).json({message: 'Ticket created'});
     } catch (err) {
-        console.log(err);
-        res.status(500).json({error: 'Please fill all the fields'});
+        res.status(500).json({error: 'Format invalid'});
     }
 });
 
@@ -27,9 +28,9 @@ router.get('/get/open', auth, async (req, res) => {
         let tickets;
 
         if (adminIds.includes(req.user.id)) {
-            tickets = await Ticket.find({ open: true });
+            tickets = await Ticket.find({ open: true }).sort({"_id": -1});
         } else {
-            tickets = await Ticket.find({ owner: req.user.id, open: true });
+            tickets = await Ticket.find({ owner: req.user.id, open: true }).sort({"_id": -1});
         }
 
         res.status(200).json(tickets);
@@ -44,9 +45,9 @@ router.get('/get/closed', auth, async (req, res) => {
         let tickets;
 
         if (adminIds.includes(req.user.id)) {
-            tickets = await Ticket.find({ open: false });
+            tickets = await Ticket.find({ open: false }.sort({"datetime": -1}));
         } else {
-            tickets = await Ticket.find({ owner: req.user.id, open: false });
+            tickets = await Ticket.find({ owner: req.user.id, open: false }.sort({"datetime": -1}));
         }
 
         res.status(200).json(tickets);
@@ -92,7 +93,7 @@ router.get('/get/infos/:id', auth, async (req, res) => {
   });
   
 
-router.post('/message', auth, securityLayer, async (req, res) => {
+router.post('/message', auth, securityLayer, messageChecker, async (req, res) => {
     try {
         const message = new Message({
             owner: req.user.id,

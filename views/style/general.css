@@ -220,7 +220,7 @@ body {
 }
 
 #close-ticket {
-    margin-left: auto;
+    margin-left: 20px;
 }
 
 .sorting {
@@ -516,7 +516,7 @@ body {
 }
 
 .left-box {
-    word-break: break-all;
+    word-break: break-word;
     font-size: 15px;
     height: 100%;
     font-weight: 300;
@@ -740,6 +740,33 @@ body {
     cursor: pointer;
 }
 
-.type-message {
-    width: 120px;
+#no-padding {
+    margin: 0;
+}
+
+#infos {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-low-detail {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-ticket-info-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+}
+
+.user-ticket-info-discriminator {
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
 }

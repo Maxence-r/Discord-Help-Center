@@ -7,7 +7,9 @@ const messageSchema = mongoose.Schema({
     },
     content: {
         type: String,
-        required: true
+        required: true,
+        maxLength: 5000,
+        minLength: 1
     },
     ticket : {
         type: String,

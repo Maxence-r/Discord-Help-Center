@@ -71,5 +71,14 @@
         min-height: 70px;
         margin-bottom: 70px;
     }
+    #infos {
+        margin-inline: 5px;
+    }
+    #close-ticket {
+        margin-inline: 5px;
+    }
+    #closed {
+        margin-inline: 5px;
+    }
 }
     

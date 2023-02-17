@@ -365,33 +365,81 @@
     display: none !important;
 }
 
-.loader-typing {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: block;
-    margin:15px auto;
-    position: relative;
-    color: #FF6B00;
-    box-sizing: border-box;
-    animation: animloader 2s linear infinite;
+
+.loader {
+    text-align: center;    
+}
+
+.loaderTyping span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 15px;
+    height: 15px;
+    background: #FF6B00;
+    border-radius: 15px;
+    animation: loader 0.8s infinite alternate;
+}
+.loaderTyping span:nth-of-type(2) {
+    animation-delay: 0.2s;
+}
+.loaderTyping span:nth-of-type(3) {
+    animation-delay: 0.6s;
+}
+@keyframes loader {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.5);
   }
-  
-  @keyframes animloader {
-    0% {
-      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
-    }
-    25% {
-      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
-    }
-    50% {
-      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
-    }
-    75% {
-      box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
-    }
-    100% {
-      box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
-    }
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
   }
-      
+}
+
+.infos-modal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+.banner {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    height: 150px;
+}
+
+.user-ticket-infos {
+    display: flex;
+    flex-direction: row;
+    z-index: 100;
+    margin-top: -50px;
+    margin-right: auto;
+    margin-left: 40px;
+}
+
+.user-ticket-info-avatar {
+    width: 100px;
+}
+
+.close-modal-infos {
+    width: 95%;
+    padding: 10px;
+    margin-top: auto;
+    background-color: #ff6b00;
+    color: white;
+    height: 50px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.close-modal-infos:hover {
+    background-color: #ff3d00;
+}
