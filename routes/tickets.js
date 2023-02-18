@@ -35,6 +35,7 @@ router.get('/get/open', auth, async (req, res) => {
 
         res.status(200).json(tickets);
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
@@ -45,13 +46,15 @@ router.get('/get/closed', auth, async (req, res) => {
         let tickets;
 
         if (adminIds.includes(req.user.id)) {
-            tickets = await Ticket.find({ open: false }.sort({"datetime": -1}));
+            tickets = await Ticket.find({ open: false }).sort({"_id": -1});
         } else {
-            tickets = await Ticket.find({ owner: req.user.id, open: false }.sort({"datetime": -1}));
+            tickets = await Ticket.find({ owner: req.user.id, open: false }).sort({"_id": -1});
         }
 
         res.status(200).json(tickets);
     } catch (err) {
+        console.log('got here');
+        console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
@@ -71,6 +74,7 @@ router.get('/get/infos/:id', auth, async (req, res) => {
             res.status(403).json({ error: 'You are not allowed to see this ticket' });
         }
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
@@ -88,6 +92,7 @@ router.get('/get/infos/:id', auth, async (req, res) => {
       }
       res.status(200).json(ticket);
     } catch (err) {
+        console.log(err);
       res.status(500).json({error: 'Something went wrong'});
     }
   });

@@ -128,7 +128,8 @@ document.getElementById('submit').addEventListener('click', () => {
             if (data.error) {
                 alert(data.error);
             } else {
-                alert(data.message);
+                document.getElementById('cancel').click();
+                document.getElementById('open-ticket').click();     
             }
         });
 });
@@ -238,7 +239,7 @@ const reference = {
 const config = {
     'new-case': ['display-tickets'],
     'cancel': ['display-new-case'],
-    'closed': ['display-messages'],
+    'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
 }
@@ -319,7 +320,6 @@ document.getElementById('open-ticket').addEventListener('click', () => {
 
 
 document.querySelector('.send-button').addEventListener('click', () => {
-    sendMessage();
     sendMessage();
     document.querySelector('.message-input').value = '';
     if(document.querySelector('.type-message')) {

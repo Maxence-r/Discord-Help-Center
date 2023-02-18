@@ -25,7 +25,6 @@
         flex-direction: column;
         width: 100%;
         min-width: 100%;
-        height: calc(100vh - 50px);
         z-index: 100;
         background-color: #F5F6F7;
     }
