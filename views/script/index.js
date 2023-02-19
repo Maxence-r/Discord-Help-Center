@@ -43,14 +43,6 @@ function toggleGetStarted() {
     document.querySelector('.get-started-popup').classList.toggle('open-modal')
 }
 
-let Boolean = false
-function toggleLateral() {
-    Boolean = !Boolean
-    let angle = Boolean ? 180 : 0
-    console.log(angle)
-    document.querySelector('.open-icon').style.transform = `rotate(${angle}deg)`;
-    document.querySelector('.lateral-menu').classList.toggle('open-lateral')
-}
 
 document.querySelector('.login').addEventListener('click', function () {
     window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=839526461349822485&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fdiscord&response_type=code&scope=identify%20guilds%20email'

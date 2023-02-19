@@ -103,6 +103,7 @@ function getUserInfo() {
         .then(response => response.json())
         .then(data => {
             if (data.message) {
+                refreshInteract();
                 document.querySelector('.user-infos') ? document.querySelector('.user-infos').remove() : null;
             } else {
                 document.querySelector('.login').remove();
@@ -175,10 +176,30 @@ function LoadTickets() {
                     </div>`
                     document.querySelector('.all-tickets').appendChild(ticketDiv);
                 });
-                refreshInteract();
             }
+            refreshInteract();
         });
 }
+
+document.getElementById('close-ticket').addEventListener('click', () => {
+    if (confirm('Are you sure you want to close this ticket ?')) {
+    fetch('/ticket/close', {
+        method: 'PATCH',
+        body: JSON.stringify({ ticketId: localStorage.getItem('ticketId') }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                document.getElementById('closed').click();
+                document.getElementById('open-ticket').click();
+            }
+        });
+    }
+});
+
 
 document.getElementById('closed-ticket').addEventListener('click', () => {
     document.querySelector('.all-tickets').innerHTML = '<span class="loader"></span>';
@@ -229,41 +250,94 @@ document.querySelector('.close-modal-infos').addEventListener('click', () => {
 });
 
 /* MANAGE ALL INTERACTIONS */
-const reference = {
+const todp = {
     'new-case': ['display-new-case'],
     'cancel': ['display-tickets'],
     'closed': ['display-tickets', 'selector', 'selector-active'],
     'infos': ['infos-modal'],
     'close-discord-infos': ['row-user-inputs'],
+    'my-tickets': ['tickets'],
 }
-const config = {
+const hide = {
     'new-case': ['display-tickets'],
     'cancel': ['display-new-case'],
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
+    'my-tickets': ['article'],
+}
+
+const optionnal = {
+    'my-tickets': ['toggleLateral'],
+}
+
+
+let Boolean = false
+function toggleLateral() {
+    Boolean = !Boolean
+    let angle = Boolean ? 180 : 0
+    console.log(angle)
+    document.querySelector('.open-icon').style.transform = `rotate(${angle}deg)`;
+    document.querySelector('.lateral-menu').classList.toggle('open-lateral')
+}
+
+toggleLateral()
+function removeListeners() {
+    let elements = document.querySelectorAll('.interact');
+    elements.forEach(function (element) {
+        element.removeEventListener('click', onClick);
+    });
+}
+
+function onClick() {
+    // Do something when the element is clicked
+}
+
+let elements = document.querySelectorAll('.interact');
+elements.forEach(function (element) {
+    element.addEventListener('click', onClick);
+});
+
+
+
+function removeListeners() {
+    let elements = document.querySelectorAll('.interact');
+    elements.forEach(function (element) {
+        element.removeEventListener('click', interactClick);
+    });
+}
+
+function interactClick(e) {
+    let id = e.target.id;
+    let parent = e.target.parentElement;
+    while (parent && !parent.classList.contains('interact')) {
+        parent = parent.parentElement;
+    }
+    if (parent) {
+        id = parent.id;
+    }
+    console.log(todp[id])
+    todp[id].forEach(function (className) {
+        document.querySelector(`.${className}`).style.display = 'flex'
+    })
+    hide[id].forEach(function (className) {
+        document.querySelector(`.${className}`).style.display = 'none'
+    })
+    if (optionnal[id]) {
+        optionnal[id].forEach(function (className) {
+            window[className]()
+        })
+    }
 }
 
 function refreshInteract() {
-    document.querySelectorAll('.interact').forEach(function (interact) {
-        interact.addEventListener('click', function (e) {
-            let id = e.target.id;
-            let parent = e.target.parentElement;
-            while (parent && !parent.classList.contains('interact')) {
-                parent = parent.parentElement;
-            }
-            if (parent) {
-                id = parent.id;
-            }
-            reference[id].forEach(function (className) {
-                document.querySelector(`.${className}`).style.display = 'flex'
-            })
-            config[id].forEach(function (className) {
-                document.querySelector(`.${className}`).style.display = 'none'
-            })
-        })
-    }) 
+    removeListeners();
+    let elements = document.querySelectorAll('.interact');
+    elements.forEach(function (element) {
+        element.addEventListener('click', interactClick);
+    });
 }
+
 
 
 /* MANAGE ALL INTERACTIONS */

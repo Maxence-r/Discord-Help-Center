@@ -19,7 +19,7 @@ router.post('/', auth, limit, ticketChecker, async (req, res) => {
         await ticket.save();
         res.status(201).json({message: 'Ticket created'});
     } catch (err) {
-        res.status(500).json({error: 'Format invalid'});
+        res.status(500).json({error: 'Please fill all fields'});
     }
 });
 
@@ -100,21 +100,41 @@ router.get('/get/infos/:id', auth, async (req, res) => {
 
 router.post('/message', auth, securityLayer, messageChecker, async (req, res) => {
     try {
-        const message = new Message({
-            owner: req.user.id,
-            ticket: req.body.ticketId,
-            content: req.body.content
-        });
-        await message.save();
-        console.log(req.body.ticketId);
-        global.io.emit(`${req.body.ticketId}-newMessage`, {message: message, user: req.user});
-        res.status(201).json({message: 'Message sent'});
-        
+      const ticket = await Ticket.findById(req.body.ticketId);
+      if (!ticket) {
+        return res.status(404).json({ error: 'Ticket not found' });
+      }
+      if (!ticket.open) {
+        return res.status(403).json({ error: 'Ticket is closed' });
+      }
+      const message = new Message({
+        owner: req.user.id,
+        ticket: req.body.ticketId,
+        content: req.body.content
+      });
+      await message.save();
+      global.io.emit(`${req.body.ticketId}-newMessage`, { message, user: req.user });
+      res.status(201).json({ message: 'Message sent' });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
+    }
+});
+  
+
+router.patch('/close', auth, securityLayer, async (req, res) => {
+    try {
+        const ticket = await Ticket.updateOne({_id: req.body.ticketId}, {open: false});
+        if (ticket.nModified === 0) {
+            return res.status(404).json({error: 'Something went wrong'});
+        }
+        res.status(200).json({message: 'Ticket closed'});
     } catch (err) {
         console.log(err);
         res.status(500).json({error: 'Something went wrong'});
     }
 });
+
 
 router.post('/messages' , auth, securityLayer, async (req, res) => {
     const messages = await Message.find({ticket: req.body.ticketId});
