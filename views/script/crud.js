@@ -290,7 +290,6 @@ function removeListeners() {
 }
 
 function onClick() {
-    // Do something when the element is clicked
 }
 
 let elements = document.querySelectorAll('.interact');
