@@ -79,5 +79,8 @@
     #closed {
         margin-inline: 5px;
     }
+    .form {
+        overflow-y: scroll;
+    }
 }
     

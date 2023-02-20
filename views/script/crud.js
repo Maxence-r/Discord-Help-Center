@@ -256,7 +256,8 @@ const todp = {
     'closed': ['display-tickets', 'selector', 'selector-active'],
     'infos': ['infos-modal'],
     'close-discord-infos': ['row-user-inputs'],
-    'my-tickets': ['tickets'],
+    'my-tickets': ['tickets', 'display-tickets'],
+    'new-case-button': ['display-new-case'],
 }
 const hide = {
     'new-case': ['display-tickets'],
@@ -264,11 +265,13 @@ const hide = {
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
-    'my-tickets': ['article'],
+    'my-tickets': ['article', 'display-new-case'],
+    'new-case-button': ['display-tickets', 'article'],
 }
 
 const optionnal = {
     'my-tickets': ['toggleLateral'],
+    'new-case-button': ['toggleLateral'],
 }
 
 
