@@ -233,7 +233,7 @@ const todp = {
     'infos': ['infos-modal'],
     'close-discord-infos': ['row-user-inputs'],
     'my-tickets': ['tickets', 'display-tickets', 'selector', 'selector-active'],
-    'new-case-button': ['display-new-case'],
+    'new-case-button': ['display-new-case', 'tickets'],
 }
 const hide = {
     'new-case': ['display-tickets'],
@@ -474,3 +474,100 @@ function getTrendings() {
 }
 
 getTrendings();
+
+function openArticle(id) {
+    toggleLateral();
+    fetch(`/articles/get/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('.article').innerHTML = '';
+        const articleContainer = document.querySelector('.article');
+        document.querySelector('.tickets').style.display = 'none';
+        document.querySelector('.article').style.display = 'block';
+        title = document.createElement('h1');
+        title.classList.add('art-title');
+        title.innerHTML = data.title;
+        articleContainer.appendChild(title);
+        description = document.createElement('h3');
+        description.classList.add('art-lower-title');
+        description.innerHTML = data.description;
+        articleContainer.appendChild(description);
+        for (let key in data.content) {
+            console.log(key);
+            switch (key) {
+                case 'youtube':
+                    const div = document.createElement('div');
+                    div.classList.add('video-container');
+                    div.id = 'ytb-responsive';
+                    div.innerHTML = `<iframe width="560" height="315" src="${data.content[key]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                    articleContainer.appendChild(div);
+                    break;
+                case 'paragraph':
+                    const text = document.createElement('p');
+                    text.classList.add('art-paragraph');
+                    text.innerHTML = data.content[key];
+                    articleContainer.appendChild(text);
+                    break;
+                case 'image':
+                    const img = document.createElement('img');
+                    img.classList.add('art-img');
+                    img.src = data.content[key];
+                    articleContainer.appendChild(img);
+                    break;
+                case 'alert':
+                    const alert = document.createElement('div');
+                    alert.classList.add('outline');
+                    alert.id = 'margin-low';
+                    alert.innerHTML = `<div class="alert"><img src="./assets/alert.svg" class="message-alert">${data.content[key]}</div>`
+                    articleContainer.appendChild(alert);
+            }
+        };
+    });
+}
+
+document.querySelector('.search-bar').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        search();
+    }
+});
+
+function search() {
+    const search = document.querySelector('.search-bar').value;
+    fetch(`/articles/search`, {
+        method: 'POST',
+        body: JSON.stringify({ search }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.querySelector('.results').innerHTML = '';
+        data.forEach(article => {
+            const h3 = document.createElement('h3');
+            h3.classList.add('recommended');
+            h3.innerHTML = article.title;
+            h3.setAttribute('onclick', `openArticle('${article._id}')`);
+            document.querySelector('.results').appendChild(h3);
+        });
+    });
+}
+
+function toggleSelectModal(options) {
+    document.querySelectorAll('.option').forEach(option => {
+        option.remove();
+    });
+    options.forEach(option => {
+        document.querySelector('.selectMenu').style.display = 'flex';
+        const div = document.createElement('div');
+        div.innerHTML = `<div class="option">
+        <input type="radio" id="huey" name="drone" value="huey"
+               checked>
+        <label for="huey">${option}</label>
+        </div>`;
+     
+        document.querySelector('.options-box').appendChild(div);
+    });
+}
+

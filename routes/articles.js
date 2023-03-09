@@ -10,4 +10,20 @@ router.get('/get', (req, res) => {
     });
 });
 
+router.get('/get/:id', (req, res) => {
+    Article.findById(req.params.id).then((article) => {
+        res.status(200).json(article);
+    }).catch((err) => {
+        res.status(500).json({ error: 'Something went wrong' });
+    });
+});
+
+router.post('/search', (req, res) => {
+    Article.find({ title: { $regex: req.body.search, $options: 'i' } }).limit(5).then((articles) => {
+        res.status(200).json(articles);
+    }).catch((err) => {
+        res.status(500).json({ error: 'Something went wrong' });
+    });
+});
+
 module.exports = router;

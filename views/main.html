@@ -28,6 +28,12 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <div onclick="toggleLateral()" class="open-menu"><img src="./assets/open.svg" class="open-icon"></div>
+    <div class="selectMenu">
+        <fieldset class="options-box">
+            <legend>Select an option:</legend>
+        </fieldset>
+        
+    </div>
 
     <!-- - - - - - - - - - - - - - - - - -->
 
@@ -97,12 +103,7 @@
         <div class="outline">
             <button onclick="toggleGetStarted()" class="get-started">Getting Started<img src="./assets/gs.svg"></button>
         </div>
-        <div class="results">
-            <h3 class="recommended">Add teranga to your server</h3>
-            <h3 class="recommended">Get started with the dashboard</h3>
-            <h3 class="recommended">Get started with the embed manager</h3>
-            <h3 class="recommended">How to start your adventure ?</h3>
-        </div>
+        <div class="results"></div>
         <div class="outline-sh">
             <div class="create-ticket">
                 <h1 class="sh-title">How can I assist you?</h1>
@@ -204,7 +205,7 @@
             <div class="form">
                 <div class="row-header">
                     <textarea class="issue-title" placeholder="Issue title, be specific in less than 100 characters"></textarea>
-                    <button id="categorie" class="sorting">
+                    <button onclick="toggleSelectModal(['test', 'test2'])" id="categorie" class="sorting">
                         <img id="reduced-ico" src="./assets/sort.svg">Category
                     </button>
                 </div>
@@ -219,17 +220,7 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <section class="article">
-        <h1 class="art-title">How to hahah toninjalabenja on valorant ?</h1>
-        <h3 class="art-lower-title">The best and easy way do it is by using your haha obviously</h3>
-        <div class="video-container">
-            <iframe width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
-        <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
-        <p class="art-paragraph">It is likely that the video of the snowboarder being chased by a bear is a hoax. Brown bears do not live in Japan, and the audio of fake growls added to the video further suggests that the video is not genuine. Additionally, the fact that the bear appears to be split in half and part of the image is missing indicates that the video has been edited or manipulated in some way. It is always important to be skeptical of videos and other information that we encounter online, and to verify their authenticity before believing or sharing them.</p>
-        <div id="margin-low" class="outline">
-            <div class="alert"><img src="./assets/alert.svg" class="message-alert">Make sure to deploy your blueprint before testing it, click on deploy and wait until it show 'deployed'</div>
-        </div>
+        
     </section>
     
 <script src="/socket.io/socket.io.js"></script>

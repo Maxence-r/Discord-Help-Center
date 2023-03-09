@@ -16,7 +16,14 @@ const ticketSchema = mongoose.Schema({
         required: true,
         maxLength: 400,
         minLength: 1
-    }, 
+    },
+    category: {
+        type: String,
+        required: true,
+        maxLength: 100,
+        minLength: 1,
+        default: "gi"
+    },
     open: {
         type: Boolean,
         required: true,
