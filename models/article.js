@@ -15,6 +15,11 @@ const articleSchema = mongoose.Schema({
         type: Object,
         required: true,
         minLenght: 1
+    }, 
+    trending : {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

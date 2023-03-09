@@ -324,13 +324,6 @@ body {
     margin-right: auto;
 }
 
-.ticket-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 20px;
-}
-
 .author-ticket {
     width: 40px;
     border-radius: 4px;
@@ -357,20 +350,6 @@ body {
 .dots-ticket {
     width: 16px;
     cursor: pointer;
-}
-
-.details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: auto;
-}
-
-.detail {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 20px;
 }
 
 .detail-text {
@@ -477,6 +456,7 @@ body {
 }
 
 .ticket-user-desc {
+    overflow-wrap: break-word;
     font-size: 14px;
     font-weight: 400;
     margin-top: 10px;

@@ -161,19 +161,7 @@ function LoadTickets() {
                         <img class="dots-ticket" src="./assets/dots.svg">
                     </div>
                     <h2 class="ticket-title">${ticket.title}</h2>
-                    <p class="ticket-description">${ticket.description}</p>
-                    <div class="ticket-footer">
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">8h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">12</h4>
-                            </div>
-                        </div>
-                    </div>`
+                    <p class="ticket-description">${ticket.description}</p>`
                     document.querySelector('.all-tickets').appendChild(ticketDiv);
                 });
             }
@@ -224,19 +212,7 @@ document.getElementById('closed-ticket').addEventListener('click', () => {
                         <img class="dots-ticket" src="./assets/dots.svg">
                     </div>
                     <h2 class="ticket-title">${ticket.title}</h2>
-                    <p class="ticket-description">${ticket.description}</p>
-                    <div class="ticket-footer">
-                        <div class="details">
-                            <div class="detail">
-                                <img src="./assets/chrono.svg">
-                                <h4 class="detail-text">8h ago</h4>
-                            </div>
-                            <div class="detail">
-                                <img src="./assets/chat.svg">
-                                <h4 class="detail-text">12</h4>
-                            </div>
-                        </div>
-                    </div>`
+                    <p class="ticket-description">${ticket.description}</p>`
                     document.querySelector('.all-tickets').appendChild(ticketDiv);
                 });
                 refreshInteract();
@@ -256,7 +232,7 @@ const todp = {
     'closed': ['display-tickets', 'selector', 'selector-active'],
     'infos': ['infos-modal'],
     'close-discord-infos': ['row-user-inputs'],
-    'my-tickets': ['tickets', 'display-tickets'],
+    'my-tickets': ['tickets', 'display-tickets', 'selector', 'selector-active'],
     'new-case-button': ['display-new-case'],
 }
 const hide = {
@@ -265,7 +241,7 @@ const hide = {
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
-    'my-tickets': ['article', 'display-new-case'],
+    'my-tickets': ['article', 'display-new-case', 'display-messages'],
     'new-case-button': ['display-tickets', 'article'],
 }
 
@@ -479,3 +455,22 @@ function LoadMessages(userInfos) {
     });
 }
 
+function getTrendings() {
+    fetch('/articles/get', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const container = document.querySelector('.results');
+            data.forEach(article => {
+                const h3 = document.createElement('h3');
+                h3.classList.add('recommended');
+                h3.innerHTML = article.title;
+                h3.setAttribute('onclick', `openArticle('${article._id}')`);
+                container.appendChild(h3);
+            });
+        });
+}
+
+getTrendings();

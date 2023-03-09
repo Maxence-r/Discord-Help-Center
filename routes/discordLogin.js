@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
         headers: { 'Content-Type': 'application/json' }
     });
     const response = await request.json();
+    console.log(response);
     res.cookie('token', response.access_token).redirect('/');
 });
 
@@ -42,6 +43,7 @@ router.post('/exchange', async (req, res) => {
 
 
 router.post('/infos', async (req, res) => {
+    console.log(req.body.access_token);
     const response = await fetch('https://discord.com/api/v10/users/@me', {
         headers: {
             authorization: `Bearer ${req.body.access_token}`
