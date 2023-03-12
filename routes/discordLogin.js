@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { botToken } = require('../config.json');
+const { botToken, adminIds } = require('../config.json');
 
 router.get('/', async (req, res) => {
     const request = await fetch('http://localhost:3000/api/discord/exchange', {
@@ -52,7 +52,13 @@ router.post('/infos', async (req, res) => {
     if (!response.ok) {
         res.status(response.status);
     }
-    res.json(await response.json());
+    const freponse = await response.json();
+    if (adminIds.includes(freponse.id)) {
+       freponse.admin = true;
+    } else {
+        freponse.admin = false;
+    }
+    res.json(freponse);
 });
 
 router.get('/logout', async (req, res) => {

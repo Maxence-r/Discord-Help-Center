@@ -222,6 +222,14 @@ body {
     margin-left: 10px;
 }
 
+#qa {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    width: 50px;
+}
+
 .sorting {
     padding: 20px;
     height: 50px;

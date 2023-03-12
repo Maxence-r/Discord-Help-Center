@@ -1,6 +1,8 @@
+const { category } = require('../config.json');
+
 const ticketChecker = (req, res, next) => {
-    if (req.body.title.includes('<') || req.body.description.includes('<')) {
-        return res.status(400).json({error: 'Ticket content cannot contain <, title may be too long (max 100 characters) or description too long (max 400 characters).'});
+    if (req.body.title.includes('<') || req.body.description.includes('<') || category.includes(req.body.category) === false) {
+        return res.status(400).json({error: 'Make sure to specify each field and a valid category !, you can\'t use "<" in your title or description'});
     }
     next();
 }

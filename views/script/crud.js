@@ -83,7 +83,7 @@ const debounce = (func, delay) => {
       .then(response => response.json())
       .then(data => {
         if (!data.message) {
-          console.log(data);
+            console.log('Cannot send typing request')
         }
       });
   };
@@ -102,6 +102,9 @@ function getUserInfo() {
     })
         .then(response => response.json())
         .then(data => {
+            if (data.admin === true) {
+                document.getElementById('qa').style.display = 'flex';
+            }
             if (data.message) {
                 refreshInteract();
                 document.querySelector('.user-infos') ? document.querySelector('.user-infos').remove() : null;
@@ -269,7 +272,6 @@ let Boolean = false
 function toggleLateral() {
     Boolean = !Boolean
     let angle = Boolean ? 180 : 0
-    console.log(angle)
     document.querySelector('.open-icon').style.transform = `rotate(${angle}deg)`;
     document.querySelector('.lateral-menu').classList.toggle('open-lateral')
 }
@@ -308,7 +310,6 @@ function interactClick(e) {
     if (parent) {
         id = parent.id;
     }
-    console.log(todp[id])
     todp[id].forEach(function (className) {
         document.querySelector(`.${className}`).style.display = 'flex'
     })
@@ -359,12 +360,9 @@ function openTicket(id) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.banner) {
-                    console.log('banner');
                     document.querySelector('.banner').style.backgroundImage = `url("https://cdn.discordapp.com/banners/${data.id}/${data.banner}.png?size=600")`
                 } else {
-                    console.log('color');
                     document.querySelector('.banner').style.backgroundColor = `${data.banner_color ? data.banner_color : '#7289da'}`;
                 } 
                 document.querySelector('.user-ticket-info-avatar').src = `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png?size=128`;
@@ -513,7 +511,6 @@ function openArticle(id) {
         description.innerHTML = data.description;
         articleContainer.appendChild(description);
         for (let key in data.content) {
-            console.log(key);
             switch (key) {
                 case 'youtube':
                     const div = document.createElement('div');

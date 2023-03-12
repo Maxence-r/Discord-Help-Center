@@ -14,7 +14,12 @@ const messageSchema = mongoose.Schema({
     ticket : {
         type: String,
         required: true
-    }
+    }, 
+    type: {
+        type: String,
+        required: true,
+        default: "default"
+    },
 });
 
 

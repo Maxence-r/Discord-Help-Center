@@ -55,9 +55,6 @@
     .support-name {
         display: none;
     }
-    .new-case {
-        margin-left: 0 !important;
-    }
     .send-button {
         min-width: 18%;
     }
@@ -70,9 +67,6 @@
     .row-user-inputs {
         min-height: 70px;
         margin-bottom: 70px;
-    }
-    #infos {
-        margin-right: 10px;
     }
     .form {
         overflow-y: scroll;
