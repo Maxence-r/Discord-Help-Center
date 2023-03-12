@@ -121,7 +121,7 @@ function getUserInfo() {
 document.getElementById('submit').addEventListener('click', () => {
     fetch('/ticket', {
         method: 'POST',
-        body: JSON.stringify({ title: document.querySelector('.issue-title').value, description: document.querySelector('.issue-desc').value }),
+        body: JSON.stringify({ title: document.querySelector('.issue-title').value, description: document.querySelector('.issue-desc').value, category: localStorage.getItem('category') }),
         headers: { 'Content-Type': 'application/json' }
     })
         .then(response => response.json())
@@ -136,6 +136,20 @@ document.getElementById('submit').addEventListener('click', () => {
 });
 
 getUserInfo();
+
+const iconsReference = {
+    'gi': './assets/issue-gi.svg',
+    'ir': './assets/issue-ir.svg',
+    'pi': './assets/issue-pi.svg',
+    'bb': './assets/issue-bb.svg'
+}
+
+const categories = {
+    'gi': 'General Issue',
+    'ir': 'Incident / report',
+    'pi': 'Payement Issue',
+    'bb': 'Breach / Bug'
+}
 
 function LoadTickets() {
     document.querySelector('.all-tickets').innerHTML = '<span class="loader"></span>';
@@ -156,8 +170,8 @@ function LoadTickets() {
                     ticketDiv.classList.add('ticket');
                     ticketDiv.innerHTML = `
                     <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
-                        <h3>Ticket ${ticket._id}<span class="ticket-type">General Inqueries</span></h3>
+                        <img class="ticket-type-img" src="${iconsReference[ticket.category]}">
+                        <h3>Ticket ${ticket._id}<span class="ticket-type">${categories[ticket.category]}</span></h3>
                         <img class="dots-ticket" src="./assets/dots.svg">
                     </div>
                     <h2 class="ticket-title">${ticket.title}</h2>
@@ -207,8 +221,8 @@ document.getElementById('closed-ticket').addEventListener('click', () => {
                     ticketDiv.classList.add('ticket');
                     ticketDiv.innerHTML = `
                     <div class="infos-ticket">
-                        <img class="ticket-type-img" src="./assets/issue-ir.svg">
-                        <h3>Ticket ${ticket._id}<span class="ticket-type">General Inqueries</span></h3>
+                        <img class="ticket-type-img" src="${iconsReference[ticket.category]}">
+                        <h3>Ticket ${ticket._id}<span class="ticket-type">${categories[ticket.category]}</span></h3>
                         <img class="dots-ticket" src="./assets/dots.svg">
                     </div>
                     <h2 class="ticket-title">${ticket.title}</h2>
@@ -233,7 +247,7 @@ const todp = {
     'infos': ['infos-modal'],
     'close-discord-infos': ['row-user-inputs'],
     'my-tickets': ['tickets', 'display-tickets', 'selector', 'selector-active'],
-    'new-case-button': ['display-new-case', 'tickets'],
+    'new-case-button': ['display-new-case', 'tickets', 'selector', 'selector-active'],
 }
 const hide = {
     'new-case': ['display-tickets'],
@@ -241,8 +255,8 @@ const hide = {
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
-    'my-tickets': ['article', 'display-new-case', 'display-messages'],
-    'new-case-button': ['display-tickets', 'article'],
+    'my-tickets': ['article', 'display-new-case', 'display-messages', 'infos-modal'],
+    'new-case-button': ['display-tickets', 'article', 'display-messages', 'infos-modal'],
 }
 
 const optionnal = {
@@ -328,12 +342,14 @@ function openTicket(id) {
     document.querySelector('.row-user-inputs').style.display = 'flex';
     document.querySelector('.display-tickets').style.display = 'none';
     document.querySelector('.display-messages').style.display = 'flex';
+    document.getElementById('close-ticket').style.display = 'flex';
     fetch(`/ticket/get/infos/${id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })
     .then(response => response.json())
     .then(data => {
+        document.querySelector('.ticket-badge').src = `${iconsReference[data.category]}`;
         localStorage.setItem('ticketId', data._id);
         localStorage.setItem('ticketIdCreator', data.owner);
         fetch('/api/discord/get', {
@@ -356,11 +372,12 @@ function openTicket(id) {
                 document.querySelector('.user-ticket-info-discriminator').innerHTML = `#${data.discriminator}`;
                 registerSocket();
                 LoadMessages(data);
-            });
+            });    
         document.querySelector('.ticket-desc').innerHTML = data.title;
         document.querySelector('.ticket-user-desc').innerHTML = data.description;
         if (data.open == false) {
             document.querySelector('.row-user-inputs').style.display = 'none';
+            document.getElementById('close-ticket').style.display = 'none';
         }
     });
 }
@@ -558,16 +575,19 @@ function toggleSelectModal(options) {
     document.querySelectorAll('.option').forEach(option => {
         option.remove();
     });
-    options.forEach(option => {
+    for (const [key, value] of Object.entries(options)) {
         document.querySelector('.selectMenu').style.display = 'flex';
         const div = document.createElement('div');
         div.innerHTML = `<div class="option">
-        <input type="radio" id="huey" name="drone" value="huey"
-               checked>
-        <label for="huey">${option}</label>
+        <input type="radio" id="${key}" value="${value}">
+        <label for="${value}">${value}</label>
         </div>`;
-     
+        div.addEventListener('click', () => {
+            document.querySelector('.selectMenu').style.display = 'none';
+            localStorage.setItem('category', key);
+        });
         document.querySelector('.options-box').appendChild(div);
-    });
+    }
+    document.getElementById('categorie').style.display = 'none';
 }
 

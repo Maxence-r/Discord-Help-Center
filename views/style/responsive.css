@@ -25,7 +25,7 @@
         flex-direction: column;
         width: 100%;
         min-width: 100%;
-        z-index: 100;
+        z-index: 1000;
         background-color: #F5F6F7;
     }
     .lateral-menu {
@@ -33,6 +33,7 @@
     }
     .open-menu {
         display: flex;
+        z-index: 20000;
     }
     .tickets {
         margin-left: 0;
@@ -71,13 +72,7 @@
         margin-bottom: 70px;
     }
     #infos {
-        margin-inline: 5px;
-    }
-    #close-ticket {
-        margin-inline: 5px;
-    }
-    #closed {
-        margin-inline: 5px;
+        margin-right: 10px;
     }
     .form {
         overflow-y: scroll;

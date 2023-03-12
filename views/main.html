@@ -30,7 +30,7 @@
     <div onclick="toggleLateral()" class="open-menu"><img src="./assets/open.svg" class="open-icon"></div>
     <div class="selectMenu">
         <fieldset class="options-box">
-            <legend>Select an option:</legend>
+            <legend>Select the category of your issue:</legend>
         </fieldset>
         
     </div>
@@ -128,7 +128,7 @@
             </ul>
             <div class="icos-1">
                 <img src="./assets/search-ico.svg">
-                <img class="responsive" src="./assets/refresh.svg">
+                <img onclick="LoadTickets()" class="responsive" src="./assets/refresh.svg">
             </div>
         </div>
         <div class="selector-active"></div>
@@ -205,7 +205,7 @@
             <div class="form">
                 <div class="row-header">
                     <textarea class="issue-title" placeholder="Issue title, be specific in less than 100 characters"></textarea>
-                    <button onclick="toggleSelectModal(['test', 'test2'])" id="categorie" class="sorting">
+                    <button onclick="toggleSelectModal({'gi': 'General inqueries', 'ir': 'Incident / report', 'pi': 'Payment issues', 'bb': 'Bug / breach report'})" id="categorie" class="sorting">
                         <img id="reduced-ico" src="./assets/sort.svg">Category
                     </button>
                 </div>

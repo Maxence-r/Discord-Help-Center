@@ -300,7 +300,6 @@
     border-radius: 4px;
     font-size: 14px;
     font-weight: 400;
-    margin-right: 10px;
     color: #717171;
 }
 
@@ -394,6 +393,10 @@
     opacity: 0.1;
     transform: scale(1);
   }
+}
+
+#categorie {
+    margin-left: 10px;
 }
 
 .infos-modal {

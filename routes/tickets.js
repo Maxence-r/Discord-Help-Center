@@ -13,7 +13,8 @@ router.post('/', auth, limit, ticketChecker, async (req, res) => {
     const ticket = new Ticket({
         owner: req.user.id,
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        category: req.body.category
     });
     try {
         await ticket.save();
