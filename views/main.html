@@ -153,9 +153,14 @@
                 <img class="support-icon" src="./assets/logo.svg">
                 <h3 class="support-name"><div class="row-support">Teranga<img title="Teranga Team" class="support-badge" src="./assets/badge-tt.svg"></div><span class="support-role">Teranga Team</span></h3>
                 <button id="infos" class="sorting interact"><img id="no-padding" src="./assets/infos.svg"></button>
-                <button id="qa" class="sorting"><img id="no-padding" src="./assets/qa.svg"></button>
+                <button onclick="document.querySelector('.options').classList.toggle('qa-open')" id="qa" class="sorting"><img id="no-padding" src="./assets/qa.svg"></button>
                 <button id="close-ticket" class="new-case"><img src="./assets/trash.svg">Close Ticket</button>
                 <button id="closed" class="sorting interact"><img src="./assets/close.svg">Close</button>
+            </div>
+            <div class="options">
+                <button id="add-alert" class="new-case"><img src="./assets/plus.svg">Alert</button>
+                <button id="notification" class="sorting"><img src="./assets/notif.svg">Notif</button>
+                <button id="discord" class="new-case"><img src="./assets/discord.svg">Discord</button>
             </div>
             <div class="messages-container">
                 <div class="tickets-infos">
@@ -164,12 +169,6 @@
                         <h3 class="ticket-desc">Ticket #5bf142459b72e12b2b1b2cd</h3>
                     </div>
                     <p class="ticket-user-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>
-                </div>
-                <div class="messages">
-                   <div class="left-message">
-                        <img src="./assets/logo.svg" class="conv-icons">
-                        <div id="intro-message" class="left-box">Here to help you !</div>
-                   </div>
                 </div>
             </div>
             <div class="infos-modal">

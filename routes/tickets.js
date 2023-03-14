@@ -8,6 +8,7 @@ const securityLayer = require('../middlewares/securityLayer');
 const { adminIds } = require('../config.json');
 const messageChecker = require('../middlewares/messageContent');
 const ticketChecker = require('../middlewares/ticketChecker');
+const { botToken } = require('../config.json');
 
 router.post('/', auth, limit, ticketChecker, async (req, res) => {
     const ticket = new Ticket({
@@ -101,25 +102,30 @@ router.get('/get/infos/:id', auth, async (req, res) => {
 
 router.post('/message', auth, securityLayer, messageChecker, async (req, res) => {
     try {
-      const ticket = await Ticket.findById(req.body.ticketId);
-      if (!ticket) {
-        return res.status(404).json({ error: 'Ticket not found' });
-      }
-      if (!ticket.open) {
-        return res.status(403).json({ error: 'Ticket is closed' });
-      }
-      const message = new Message({
-        owner: req.user.id,
-        ticket: req.body.ticketId,
-        content: req.body.content
-      });
-      await message.save();
-      global.io.emit(`${req.body.ticketId}-newMessage`, { message, user: req.user });
-      res.status(201).json({ message: 'Message sent' });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ error: 'Something went wrong' });
-    }
+        const ticket = await Ticket.findById(req.body.ticketId);
+        if (!ticket) {
+            return res.status(404).json({ error: 'Ticket not found' });
+        }
+        if (!ticket.open) {
+            return res.status(403).json({ error: 'Ticket is closed' });
+        }
+        const message = new Message({
+            owner: req.user.id,
+            ticket: req.body.ticketId,
+            content: req.body.content
+        });
+        if (adminIds.includes(req.user.id) && req.body.type) {
+            console.log(req.body.type)
+            message.type = `${req.body.type}`;
+        }
+        console.log(message)
+        await message.save();
+        global.io.emit(`${req.body.ticketId}-newMessage`, { message, user: req.user });
+        res.status(201).json({ message: 'Message sent' });
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({ error: 'Something went wrong' });
+        }
 });
   
 
@@ -146,5 +152,66 @@ router.post('/typing', auth, securityLayer, async (req, res) => {
     global.io.emit(`${req.body.ticketId}-typing`, req.user.id);
     res.status(200).json({message: 'Typing'});
 });
+
+router.post('/notification', auth, securityLayer, async (req, res) => {
+    if (adminIds.includes(req.user.id)) {
+        fetch('https://discord.com/api/v10/users/@me/channels', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bot ${botToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'recipient_id': req.body.receiverId
+                })
+            })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json);
+                fetch(`https://discord.com/api/v10/channels/${json.id}/messages`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bot ${botToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            "embeds": [
+                                {
+                                  "title": "**New notification**",
+                                  "description": `This is an official notification from the **Teranga Help Center** \n \`\`\`${req.body.message}\`\`\``,
+                                  "url": "https://discordapp.com",
+                                  "color": 10038562
+                                }
+                              ]
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(json => {
+                        console.log(json);
+                        res.status(200).json({
+                            message: 'Notification sent'
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json({
+                            error: 'Something went wrong'
+                        });
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                    error: 'Something went wrong'
+                });
+            });
+    } else {
+        res.status(403).json({
+            error: 'You are not allowed to do this'
+        });
+    }
+});
+
+
 
 module.exports = router;

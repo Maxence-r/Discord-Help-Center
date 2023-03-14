@@ -8,7 +8,23 @@ function registerSocket() {
     socketListener = socket.on(`${localStorage.getItem('ticketId')}-newMessage`, (message) => {
         user = message.user;
         message = message.message;
-        if (message.owner != localStorage.getItem('ticketIdCreator')) {
+        if (message.type != 'default') {
+            if (message.type == 'alert') {
+                document.querySelector('.messages-container').innerHTML += `
+                <div class="outline alert-chat" id="chat-alert">
+                    <div class="alert">
+                        <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                </div>
+            `;
+            } else if (message.type == 'discord') {
+                document.querySelector('.messages-container').innerHTML += `
+                <div class="outline" id="chat-alert">
+                    <div class="alert">
+                        <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                </div>
+            `;
+            }
+        } else if (message.owner != localStorage.getItem('ticketIdCreator')) {
         document.querySelector('.messages-container').innerHTML += `
         <div class="messages">
             <div class="left-message">
@@ -435,6 +451,9 @@ function LoadMessages(userInfos) {
             document.querySelectorAll('.messages').forEach(message => {
                 message.remove();
             });
+            document.querySelectorAll('.alert-chat').forEach(alert => {
+                alert.remove();
+            });
             introMessage = document.createElement('div');
             introMessage.classList.add('messages');
             introMessage.innerHTML = `
@@ -444,7 +463,23 @@ function LoadMessages(userInfos) {
             </div>`;
             document.querySelector('.messages-container').appendChild(introMessage);
             data.forEach(message => {
-                if (message.owner != localStorage.getItem('ticketIdCreator')) {
+                if (message.type != 'default') {
+                    if (message.type == 'alert') {
+                        document.querySelector('.messages-container').innerHTML += `
+                        <div class="outline alert-chat" id="chat-alert">
+                            <div class="alert">
+                                <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                        </div>
+                    `;
+                    } else if (message.type == 'discord') {
+                        document.querySelector('.messages-container').innerHTML += `
+                        <div class="outline" id="chat-alert">
+                            <div class="alert">
+                                <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                        </div>
+                    `;
+                    }
+                } else if (message.owner != localStorage.getItem('ticketIdCreator')) {
                     document.querySelector('.messages-container').innerHTML += `
                     <div class="messages">
                         <div class="left-message">
@@ -588,3 +623,44 @@ function toggleSelectModal(options) {
     document.getElementById('categorie').style.display = 'none';
 }
 
+document.querySelectorAll('.options > button').forEach(option => {
+    option.addEventListener('click', () => {
+        if (option.id == 'notification') {
+            let message = prompt('Specify the notification message', 'Hello there, we want to let you know that you received a new message on the teranga help center.');
+            if (message == null) {
+                return;
+            }
+            fetch('/ticket/notification', {
+                method: 'POST',
+                body: JSON.stringify({ receiverId: localStorage.getItem('ticketIdCreator') , message: message }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(!data.message) {
+                    alert('An error occured, please try again later.');
+                } else {
+                    alert(data.message);
+                }
+            });
+        } else if (option.id == 'add-alert') {
+            let alert = prompt('Specify the alert message');
+            if (alert == null) {
+                return;
+            }
+            fetch('/ticket/message', {
+                method: 'POST',
+                body: JSON.stringify({ ticketId: localStorage.getItem('ticketId'), content: alert, type: 'alert' }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(!data.message) {
+                    alert('An error occured, please try again later.');
+                } else {
+                    alert(data.message);
+                }
+            });
+        }
+    });
+});

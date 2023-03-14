@@ -81,6 +81,12 @@
     .outline-sh {
         margin-top: 0;
     }
+    #chat-alert {
+        width: 90%;
+    }
+    .selector {
+        margin-top: 10px;
+    }
 }
     
 @media screen and (max-height: 737px) {
