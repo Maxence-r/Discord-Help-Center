@@ -87,6 +87,9 @@
     .selector {
         margin-top: 10px;
     }
+    .discord {
+        width: 95%;
+    }
 }
     
 @media screen and (max-height: 737px) {

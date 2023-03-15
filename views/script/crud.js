@@ -18,10 +18,32 @@ function registerSocket() {
             `;
             } else if (message.type == 'discord') {
                 document.querySelector('.messages-container').innerHTML += `
-                <div class="outline" id="chat-alert">
-                    <div class="alert">
-                        <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                <div class="discord">
+                <div class="discord-box">
+                    <img src="./assets/t_black.svg" class="discord-icon">
+                    <div class="guild-infos">
+                        <h3 class="guild-title">Teranga Industries</h3>
+                        <p class="guild-desc">General topics, economy</p>
+                    </div>
+                    <button onclick="window.location.href='https://discord.gg/zep4CBfd';" class="join-server">Join</button>
                 </div>
+                <div class="discord-box">
+                    <img src="./assets/t_blueprint.svg" class="discord-icon">
+                    <div class="guild-infos">
+                        <h3 class="guild-title">Teranga Blueprint</h3>
+                        <p class="guild-desc">General topics, mutual aid</p>
+                    </div>
+                    <button onclick="window.location.href='https://discord.gg/85KS5fx5s3';" class="join-server">Join</button>
+                </div>
+                <div class="discord-box">
+                    <img src="./assets/t_dev.svg" class="discord-icon">
+                    <div class="guild-infos">
+                        <h3 class="guild-title">Teranga Dev</h3>
+                        <p class="guild-desc">Follow the development</p>
+                    </div>
+                    <button onclick="window.location.href='https://discord.gg/zep4CBfd';" class="join-server">Join</button>
+                </div>
+            </div>
             `;
             }
         } else if (message.owner != localStorage.getItem('ticketIdCreator')) {
@@ -454,6 +476,9 @@ function LoadMessages(userInfos) {
             document.querySelectorAll('.alert-chat').forEach(alert => {
                 alert.remove();
             });
+            document.querySelectorAll('.discord').forEach(discord => {
+                discord.remove();
+            });
             introMessage = document.createElement('div');
             introMessage.classList.add('messages');
             introMessage.innerHTML = `
@@ -473,9 +498,31 @@ function LoadMessages(userInfos) {
                     `;
                     } else if (message.type == 'discord') {
                         document.querySelector('.messages-container').innerHTML += `
-                        <div class="outline" id="chat-alert">
-                            <div class="alert">
-                                <img src="./assets/alert.svg" class="message-alert">${message.content}</div>
+                        <div class="discord">
+                            <div class="discord-box">
+                                <img src="./assets/t_black.svg" class="discord-icon">
+                                <div class="guild-infos">
+                                    <h3 class="guild-title">Teranga Industries</h3>
+                                    <p class="guild-desc">General topics, economy</p>
+                                </div>
+                                <button onclick="window.location.href='https://discord.gg/zep4CBfd';" class="join-server">Join</button>
+                            </div>
+                            <div class="discord-box">
+                                <img src="./assets/t_blueprint.svg" class="discord-icon">
+                                <div class="guild-infos">
+                                    <h3 class="guild-title">Teranga Blueprint</h3>
+                                    <p class="guild-desc">General topics, mutual aid</p>
+                                </div>
+                                <button onclick="window.location.href='https://discord.gg/85KS5fx5s3';" class="join-server">Join</button>
+                            </div>
+                            <div class="discord-box">
+                                <img src="./assets/t_dev.svg" class="discord-icon">
+                                <div class="guild-infos">
+                                    <h3 class="guild-title">Teranga Dev</h3>
+                                    <p class="guild-desc">Follow the development</p>
+                                </div>
+                                <button onclick="window.location.href='https://discord.gg/zep4CBfd';" class="join-server">Join</button>
+                            </div>
                         </div>
                     `;
                     }
@@ -651,6 +698,20 @@ document.querySelectorAll('.options > button').forEach(option => {
             fetch('/ticket/message', {
                 method: 'POST',
                 body: JSON.stringify({ ticketId: localStorage.getItem('ticketId'), content: alert, type: 'alert' }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(!data.message) {
+                    alert('An error occured, please try again later.');
+                } else {
+                    alert(data.message);
+                }
+            });
+        } else if (option.id  = 'discord') {
+            fetch('/ticket/message', {
+                method: 'POST',
+                body: JSON.stringify({ ticketId: localStorage.getItem('ticketId'), content: "Sent by the Teranga Team", type: 'discord' }),
                 headers: { 'Content-Type': 'application/json' }
             })
             .then(response => response.json())

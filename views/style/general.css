@@ -136,9 +136,53 @@ body {
 .tickets {
     display: flex;
     flex-direction: column;
-    padding: 10px 40px;
+    padding: 10px 20px;
     width: 100%;
     margin-left: 30px;
+}
+
+.discord-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+}
+
+.guild-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.join-server {
+    background-color: #FDF6E3;
+    color: #FF7C1D;
+    padding-inline: 25px;
+    border: none;
+    height: 50px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.guild-infos {
+    margin-left: 10px;
+}
+
+.guild-desc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #5A5A5A;
+}
+
+.discord-icon {
+    width: 50px;
+    border-radius: 2px;
 }
 
 .elements {
@@ -333,7 +377,7 @@ body {
 .ticket-title {
     overflow-wrap: anywhere; 
     font-size: 23px;
-    margin-top: 20px;
+    margin-top: 10px;
     font-weight: 400;
     margin-right: auto;
 }
