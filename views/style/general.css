@@ -1,844 +1,860 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+
 * {
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Sora', sans-serif;
-    scroll-behavior: smooth;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Sora', sans-serif;
+	scroll-behavior: smooth;
 }
 
 body {
-    background-color: #F5F6F7;
-    background-image: url("../assets/background.svg");
-    background-repeat: no-repeat;
-    backdrop-filter: blur(50px);
-    padding: 30px;
-    height: 100vh;
-    display: flex;
-    overflow-y: hidden;
+	background-color: #F5F6F7;
+	background-image: url("../assets/background.svg");
+	background-repeat: no-repeat;
+	backdrop-filter: blur(50px);
+	padding: 30px;
+	height: 100vh;
+	display: flex;
+	overflow-y: hidden;
 }
 
 /* ===== Scrollbar CSS ===== */
-  /* Firefox */
-  * {
-    scrollbar-width: none;
-    scrollbar-color: #ff6b00 #ffffff;
-  }
+/* Firefox */
+* {
+	scrollbar-width: none;
+	scrollbar-color: #ff6b00 #ffffff;
+}
 
-  /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 0px;
-  }
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 0px;
+}
 
-  *::-webkit-scrollbar-track {
-    background: transparent;
-  }
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
 
-  *::-webkit-scrollbar-thumb {
-    background-color: #ff6b00;
-    border-radius: 0px;
-    border: 3px none #ffffff;
-  }
+*::-webkit-scrollbar-thumb {
+	background-color: #ff6b00;
+	border-radius: 0px;
+	border: 3px none #ffffff;
+}
 
 
-.background  {
-    width: 100%;
-    filter: blur(50px);
+.background {
+	width: 100%;
+	filter: blur(50px);
 }
 
 .lateral-menu {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 25%;
-    min-width: 375px;
-    height: 100%;
-    transition: all 0.2s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+	width: 25%;
+	min-width: 375px;
+	height: 100%;
+	transition: all 0.2s ease-in-out;
 }
 
 .user-infos {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
 }
 
 .user-logo {
-    width: 50px;
-    border-radius: 6px;
+	width: 50px;
+	border-radius: 6px;
 }
 
 .user-name {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
 }
 
 #user-name {
-    color: black;
-    font-size: 20px;
-    font-weight: 400;
+	color: black;
+	font-size: 20px;
+	font-weight: 400;
 }
 
 .user-name span {
-    font-size: 14px;
-    font-weight: 400;
-    color: #5A5A5A;
+	font-size: 14px;
+	font-weight: 400;
+	color: #5A5A5A;
 }
 
 .dots {
-    margin-left: auto;
-    width: 16px;
+	margin-left: auto;
+	width: 16px;
 }
 
 .nav-title {
-    font-size: 30px;
-    font-weight: 400;
-    margin-top: 50px;
+	font-size: 30px;
+	font-weight: 400;
+	margin-top: 50px;
 }
 
 .nav-desc {
-    font-size: 17px;
-    font-weight: 400;
-    color: #5A5A5A;
+	font-size: 17px;
+	font-weight: 400;
+	color: #5A5A5A;
 }
 
 .outline {
-    margin-top: 20px;
-    border-radius: 4px;
-    padding: 3px;
-    border: 1px solid #d7d7d7;
+	margin-top: 20px;
+	border-radius: 4px;
+	padding: 3px;
+	border: 1px solid #d7d7d7;
 }
 
 .outline-sh {
-    margin-top: auto;
-    border-radius: 4px;
-    background-color: white;
-    padding: 6px;
-    border: none;
-    transition: all 0.2s ease-in-out;
+	margin-top: auto;
+	border-radius: 4px;
+	background-color: white;
+	padding: 6px;
+	border: none;
+	transition: all 0.2s ease-in-out;
 }
 
 .outline-sh:hover {
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.07);
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
 }
 
 .sh-title {
-    font-size: 25px;
-    color: white;
-    font-weight: 600;
+	font-size: 25px;
+	color: white;
+	font-weight: 600;
 }
 
 .sh-desc {
-    font-size: 15px;
-    color: white;
-    font-weight: 300;
+	font-size: 15px;
+	color: white;
+	font-weight: 300;
 }
 
 .tickets {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 20px;
-    width: 100%;
-    margin-left: 30px;
+	display: flex;
+	flex-direction: column;
+	padding: 10px 20px;
+	width: 100%;
+	margin-left: 30px;
 }
 
 .discord-box {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px;
-    border: 1px solid #d7d7d7;
-    border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	align-items: center;
+	padding: 8px;
+	border: 1px solid #d7d7d7;
+	border-radius: 5px;
 }
 
 .guild-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #000000;
+	font-size: 18px;
+	font-weight: 600;
+	color: #000000;
 }
 
 .join-server {
-    background-color: #FDF6E3;
-    color: #FF7C1D;
-    padding-inline: 25px;
-    border: none;
-    height: 50px;
-    border-radius: 2px;
-    font-size: 14px;
-    font-weight: 600;
-    margin-left: 20px;
-    cursor: pointer;
+	background-color: #FDF6E3;
+	color: #FF7C1D;
+	padding-inline: 25px;
+	border: none;
+	height: 50px;
+	border-radius: 2px;
+	font-size: 14px;
+	font-weight: 600;
+	margin-left: 20px;
+	cursor: pointer;
 }
 
 .guild-infos {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .guild-desc {
-    font-size: 14px;
-    font-weight: 400;
-    color: #5A5A5A;
+	font-size: 14px;
+	font-weight: 400;
+	color: #5A5A5A;
 }
 
 .discord-icon {
-    width: 50px;
-    border-radius: 2px;
+	width: 50px;
+	border-radius: 2px;
 }
 
 .elements {
-    padding-left: 20px;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    justify-content: space-between;
+	padding-left: 20px;
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	justify-content: space-between;
 }
 
 .elements li {
-    display: flex;
-    margin-right: 40px;
-    font-size: 15px;
-    color: #FF6B00;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
+	display: flex;
+	margin-right: 40px;
+	font-size: 15px;
+	color: #FF6B00;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
 }
 
-.elements > li > img {
-    width: 20px;
-    margin-right: 10px;
+.elements>li>img {
+	width: 20px;
+	margin-right: 10px;
 }
 
 .selector-active {
-    margin-top: -2px;
-    background-color: #FF6B00;
-    width: 120px;
-    height: 2px;
-    transition: all 0.2s ease-in-out;
+	margin-top: -2px;
+	background-color: #FF6B00;
+	width: 120px;
+	height: 2px;
+	transition: all 0.2s ease-in-out;
 }
 
 .icos-1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
-.icos-1 > img {
-    width: 40px;
-    margin-left: 10px;
-    cursor: pointer;
+.icos-1>img {
+	width: 40px;
+	margin-left: 10px;
+	cursor: pointer;
 }
 
 .actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .new-case {
-    padding: 20px;
-    height: 50px;
-    border: none;
-    background-color: #FF6B00;
-    color: white;
-    display: flex;
-    font-weight: 600;
-    align-items: center;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+	padding: 20px;
+	height: 50px;
+	border: none;
+	background-color: #FF6B00;
+	color: white;
+	display: flex;
+	font-weight: 600;
+	align-items: center;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 .new-case:hover {
-    background-color: #dd5c00;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.07);
+	background-color: #dd5c00;
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
 }
 
-.new-case > img {
-    width: 18px;
-    margin-right: 10px;
+.new-case>img {
+	width: 18px;
+	margin-right: 10px;
 }
 
 #closed {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 #close-ticket {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 #qa {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    margin-left: 10px;
-    width: 50px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	margin-left: 10px;
+	width: 50px;
 }
 
 .sorting {
-    padding: 20px;
-    height: 50px;
-    border: none;
-    background-color: white;
-    color: #FF6B00;
-    display: flex;
-    font-weight: 600;
-    align-items: center;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    margin-left: auto;
+	padding: 20px;
+	height: 50px;
+	border: none;
+	background-color: white;
+	color: #FF6B00;
+	display: flex;
+	font-weight: 600;
+	align-items: center;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	margin-left: auto;
 }
 
 .qa-open {
-    display: flex !important;
+	display: flex !important;
 }
 
 #chat-alert {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
 }
 
 .options {
-    display: none;
-    margin-top: 10px;
-    flex-direction: row;
-    gap: 10px;
+	display: none;
+	margin-top: 10px;
+	flex-direction: row;
+	gap: 10px;
 }
 
 .sorting:hover {
-    background-color: #f5f5f5;
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.07);
+	background-color: #f5f5f5;
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
 }
 
-.sorting > img {
-    width: 22px;
-    margin-right: 10px;
+.sorting>img {
+	width: 22px;
+	margin-right: 10px;
 }
 
 .display-tickets {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    height: calc(100% - 20px);
-    overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	height: calc(100% - 20px);
+	overflow-y: scroll;
 }
 
 .display-messages {
-    display: none;
-    flex-direction: column;
-    height: 100%;
+	display: none;
+	flex-direction: column;
+	height: 100%;
 }
 
 .all-tickets {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    margin-top: 20px;
-    animation: fadein;
-    overflow-y: scroll;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	margin-top: 20px;
+	animation: fadein;
+	overflow-y: scroll;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
 }
 
 @keyframes fadein {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateY(0px);
-    }
+	from {
+		transform: translateY(20px);
+	}
+
+	to {
+		transform: translateY(0px);
+	}
 }
 
 .infos-ticket {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .ticket-type-img {
-    width: 40px;
-    margin-right: 12px;
+	width: 40px;
+	margin-right: 12px;
 }
 
-.infos-ticket > h3 {
-    line-break: anywhere;
-    display: flex;
-    flex-direction: column;
-    line-height: 17px;
-    font-size: 17px;
-    font-weight: 500;
-    margin-right: auto;
+.infos-ticket>h3 {
+	line-break: anywhere;
+	display: flex;
+	flex-direction: column;
+	line-height: 17px;
+	font-size: 17px;
+	font-weight: 500;
+	margin-right: auto;
 }
 
 .ticket-title {
-    overflow-wrap: anywhere; 
-    font-size: 23px;
-    margin-top: 10px;
-    font-weight: 400;
-    margin-right: auto;
+	overflow-wrap: anywhere;
+	font-size: 23px;
+	margin-top: 10px;
+	font-weight: 400;
+	margin-right: auto;
 }
 
 .ticket-type {
-    font-size: 15px;
-    font-weight: 300;
-    color: #5A5A5A;
-    margin-right: auto;
+	font-size: 15px;
+	font-weight: 300;
+	color: #5A5A5A;
+	margin-right: auto;
 }
 
 .ticket-description {
-    overflow-wrap: anywhere;
-    font-size: 15px;
-    font-weight: 300;
-    color: #5A5A5A;
-    margin-right: auto;
+	overflow-wrap: anywhere;
+	font-size: 15px;
+	font-weight: 300;
+	color: #5A5A5A;
+	margin-right: auto;
 }
 
 .author-ticket {
-    width: 40px;
-    border-radius: 4px;
-    margin-right: 10px;
+	width: 40px;
+	border-radius: 4px;
+	margin-right: 10px;
 }
 
 .author-name {
-    display: flex;
-    flex-direction: column;
-    line-height: 18px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #5A5A5A;
-    margin-right: 10px;
+	display: flex;
+	flex-direction: column;
+	line-height: 18px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #5A5A5A;
+	margin-right: 10px;
 }
 
 .user-type {
-    font-size: 15px;
-    font-weight: 400;
-    color: #949494;
-    margin-right: 10px;
+	font-size: 15px;
+	font-weight: 400;
+	color: #949494;
+	margin-right: 10px;
 }
 
 .dots-ticket {
-    width: 16px;
-    cursor: pointer;
+	width: 16px;
+	cursor: pointer;
 }
 
 .detail-text {
-    font-size: 15px;
-    font-weight: 400;
-    color: #949494;
-    margin-left: 10px;
+	font-size: 15px;
+	font-weight: 400;
+	color: #949494;
+	margin-left: 10px;
 }
 
-.details > img {
-    width: 20px;
+.details>img {
+	width: 20px;
 }
 
 #actions {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 #close {
-    margin-left: auto;
+	margin-left: auto;
 }
 
 .support-icon {
-    width: 50px;
-    border-radius: 4px;
-    margin-right: 10px;
+	width: 50px;
+	border-radius: 4px;
+	margin-right: 10px;
 }
 
 .support-name {
-    font-size: 18px;
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    line-height: 20px;
+	font-size: 18px;
+	font-weight: 500;
+	display: flex;
+	flex-direction: column;
+	line-height: 20px;
 }
 
 .support-name span {
-    font-size: 15px;
-    font-weight: 400;
-    color: #949494;
+	font-size: 15px;
+	font-weight: 400;
+	color: #949494;
 }
 
 .row-support {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .support-badge {
-    width: 18px;
-    height: 18px;
-    border-radius: 2px;
-    margin-left: 5px;
+	width: 18px;
+	height: 18px;
+	border-radius: 2px;
+	margin-left: 5px;
 }
 
 .messages-container {
-    background-color: white;
-    overflow-y: scroll;
-    margin-top: 10px;
-    border-radius: 4px;
-    height: 100%;
+	background-color: white;
+	overflow-y: scroll;
+	margin-top: 10px;
+	border-radius: 4px;
+	height: 100%;
 }
 
 .send-button {
-    margin-right: auto;
-    margin-left: auto;
-    width: 22px;
-    height: 22px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+	margin-right: auto;
+	margin-left: auto;
+	width: 22px;
+	height: 22px;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 .row-user-inputs {
-    margin-top: 20px;
-    min-height: 70px;
-    height: 70px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	margin-top: 20px;
+	min-height: 70px;
+	height: 70px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .ticker-infos-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .ticket-badge {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    transition: all 0.2s ease-in-out;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	transition: all 0.2s ease-in-out;
 }
 
 .ticket-badge:hover {
-    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.07);
+	box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.07);
 }
 
 .ticket-desc {
-    font-size: 17px;
-    font-weight: 400;
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
+	font-size: 17px;
+	font-weight: 400;
+	display: flex;
+	flex-direction: column;
+	margin-left: 10px;
 }
 
 .ticket-user-desc {
-    overflow-wrap: break-word;
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 10px;
-    color: #949494;
+	overflow-wrap: break-word;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top: 10px;
+	color: #949494;
 }
 
 .conv-icons {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
 }
 
 .left-message {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 10px;
 }
 
 .right-message {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-bottom: 10px;
 }
 
 .right-box {
-    word-break: break-all;
-    font-size: 15px;
-    font-weight: 300;
-    height: 100%;
-    padding: 8px;
-    color: white;
-    background-color: #FF6B00;
-    max-width: 80%;
-    margin-right: 10px;
-    border-radius: 5px;
+	word-break: break-all;
+	font-size: 15px;
+	font-weight: 300;
+	height: 100%;
+	padding: 8px;
+	color: white;
+	background-color: #FF6B00;
+	max-width: 80%;
+	margin-right: 10px;
+	border-radius: 5px;
 }
 
 .left-box {
-    word-break: break-word;
-    font-size: 15px;
-    height: 100%;
-    font-weight: 300;
-    padding: 8px;
-    background-color: #F5F6F7;
-    max-width: 80%;
-    margin-left: 10px;
-    border-radius: 5px;
+	word-break: break-word;
+	font-size: 15px;
+	height: 100%;
+	font-weight: 300;
+	padding: 8px;
+	background-color: #F5F6F7;
+	max-width: 80%;
+	margin-left: 10px;
+	border-radius: 5px;
 }
 
 .alert {
-    overflow-wrap: anywhere;
-    display: flex;
-    font-size: 14px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #FDF6E3;
-    color: #FF6B00;
-    padding: 8px 15px;
-    border-radius: 4px;
+	overflow-wrap: anywhere;
+	display: flex;
+	font-size: 14px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: #FDF6E3;
+	color: #FF6B00;
+	padding: 8px 15px;
+	border-radius: 4px;
 }
 
 .message-alert {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 #reduced {
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
 }
 
 #margin-low {
-    margin-top: 10px;
-    margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .article {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 40px;
-    overflow-y: scroll;
+	display: none;
+	flex-direction: column;
+	width: 100%;
+	margin-left: 40px;
+	overflow-y: scroll;
 }
 
 #tuto-youtube {
-    margin-top: 0px;
-    min-width: 70%;
+	margin-top: 0px;
+	min-width: 70%;
 }
 
 .tuto-title {
-    font-size: 40px;
-    font-weight: 500;
-    margin-bottom: 10px;
+	font-size: 40px;
+	font-weight: 500;
+	margin-bottom: 10px;
 }
 
 .progress-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
 }
 
 .step {
-    padding-inline: 10px;
-    margin-bottom: 12px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    height: 42px;
-    border-radius: 4px;
-    border: 1px solid #D9D9D9;
-    cursor: pointer;
+	padding-inline: 10px;
+	margin-bottom: 12px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	height: 42px;
+	border-radius: 4px;
+	border: 1px solid #D9D9D9;
+	cursor: pointer;
 }
 
 .active {
-    background-color: #F9F9F9;
+	background-color: #F9F9F9;
 }
 
 .progress-icon {
-    filter: grayscale(100%);
-    opacity: 0.4;
+	filter: grayscale(100%);
+	opacity: 0.4;
 }
 
-.done > .progress-icon {
-    filter: grayscale(0%);
-    opacity: 1;
+.done>.progress-icon {
+	filter: grayscale(0%);
+	opacity: 1;
 }
 
-.done > .step-desc {
-    color: #000000;
-    transition: all 0.5s ease-in-out;
+.done>.step-desc {
+	color: #000000;
+	transition: all 0.5s ease-in-out;
 }
 
 .step-desc {
-    color: #D9D9D9;
-    font-size: 14px;
-    font-weight: 400;
-    margin-left: 10px;
+	color: #D9D9D9;
+	font-size: 14px;
+	font-weight: 400;
+	margin-left: 10px;
 }
 
 .tuto-actions {
-    display: flex;
-    flex-direction: row;
-    margin-top: auto;
+	display: flex;
+	flex-direction: row;
+	margin-top: auto;
 }
 
 .tuto-close {
-    width: 30%;
-    padding: 10px 20px;
-    height: 48px;
-    border-radius: 4px;
-    border: none;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #EBEBEB;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+	width: 30%;
+	padding: 10px 20px;
+	height: 48px;
+	border-radius: 4px;
+	border: none;
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #EBEBEB;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
 }
 
 .tuto-close:hover {
-    background-color: #F9F9F9;
+	background-color: #F9F9F9;
 }
 
 .tuto-continue {
-    padding: 10px 20px;
-    height: 48px;
-    width: 70%;
-    border-radius: 4px;
-    border: none;
-    background-color: #FF6B00;
-    color: white;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: all 0.2s ease-in-out;
+	padding: 10px 20px;
+	height: 48px;
+	width: 70%;
+	border-radius: 4px;
+	border: none;
+	background-color: #FF6B00;
+	color: white;
+	cursor: pointer;
+	margin-left: 10px;
+	transition: all 0.2s ease-in-out;
 }
 
 .tuto-continue:hover {
-    background-color: #d56a00;
-    
+	background-color: #d56a00;
+
 }
 
 .open-lateral {
-    transform: translateX(0px) !important;
+	transform: translateX(0px) !important;
 }
 
 .open-modal {
-    display: flex !important;
-    animation: fadeIn 0.5s ease-in-out;
+	display: flex !important;
+	animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.95)
-    }
-    100% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 0;
+		transform: scale(0.95)
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 .open-icon {
-    width: 26px;
-    height: 26px;
-    transition: all 0.2s ease-in-out;
+	width: 26px;
+	height: 26px;
+	transition: all 0.2s ease-in-out;
 }
 
 #margin-low-low {
-    height: 50px;
-    margin: 0;
-    margin-right: 10px;
+	height: 50px;
+	margin: 0;
+	margin-right: 10px;
 }
 
 #alert-case {
-    height: 100%;
-    padding: 0;
-    padding-inline: 20px;
+	height: 100%;
+	padding: 0;
+	padding-inline: 20px;
 }
 
 #reduced-ico {
-    width: 16px;
+	width: 16px;
 }
 
 #cancel {
-    margin-left: auto;
+	margin-left: auto;
 }
 
 .row-header {
-    margin-top: 10px;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
+	margin-top: 10px;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
 }
 
 #submit {
-    margin-top: 10px;
-    justify-content: center;
-    align-items: center;
+	margin-top: 10px;
+	justify-content: center;
+	align-items: center;
 }
 
 .row-buttons {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 #new-case-button {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .admin {
-    display: none !important;
+	display: none !important;
 }
 
 #auto {
-    display: none;
-    margin-top: auto;
-    margin-bottom: auto;
+	display: none;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 #logout {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #no-padding {
-    margin: 0;
+	margin: 0;
 }
 
 #infos {
-    width: 50px;
-    height: 50px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .row-low-detail {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
 }
 
 .user-ticket-info-name {
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
+	font-size: 20px;
+	font-weight: 500;
+	color: white;
 }
 
 .user-ticket-info-discriminator {
-    font-size: 16px;
-    font-weight: 300;
-    color: white;
+	font-size: 16px;
+	font-weight: 300;
+	color: white;
 }
 
 .art-img {
-    width: 70%;
+	width: 70%;
 }
 
-.selectMenu {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 100000;
-    backdrop-filter: blur(20px);
+#sorting {
+    margin-top: 40px;
+}
+
+.dropdown-content {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	right: 50px;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.08);
+	z-index: 1;
+}
+
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+    cursor: pointer;
+	background-color: #d2d2d2;
 }

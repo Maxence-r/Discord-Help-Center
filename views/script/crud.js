@@ -1,5 +1,5 @@
 let socketListener;
-
+localStorage.setItem('status', 'open')
 function registerSocket() {
     if (socketListener) {
         socketListener.off();
@@ -154,7 +154,7 @@ function getUserInfo() {
                 localStorage.setItem('avatar', `https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png`);
                 localStorage.setItem('username', `${data.username}#${data.discriminator}`);
                 localStorage.setItem('id', data.id);
-                LoadTickets();
+                LoadTickets("open");
             }
         });
 }
@@ -192,10 +192,12 @@ const categories = {
     'bb': 'Breach / Bug'
 }
 
-function LoadTickets() {
+function LoadTickets(status) {
+    localStorage.setItem('status', status)
     document.querySelector('.all-tickets').innerHTML = '<span class="loader"></span>';
-    fetch('/ticket/get/open', {
-        method: 'GET',
+    fetch('/ticket/get', {
+        method: 'POST',
+        body: JSON.stringify({status: status, sorting: localStorage.getItem('sorting')}),
         headers: { 'Content-Type': 'application/json' }
     })
         .then(response => response.json())
@@ -224,6 +226,8 @@ function LoadTickets() {
         });
 }
 
+
+
 document.getElementById('close-ticket').addEventListener('click', () => {
     if (confirm('Are you sure you want to close this ticket ?')) {
     fetch('/ticket/close', {
@@ -244,36 +248,6 @@ document.getElementById('close-ticket').addEventListener('click', () => {
 });
 
 
-document.getElementById('closed-ticket').addEventListener('click', () => {
-    document.querySelector('.all-tickets').innerHTML = '<span class="loader"></span>';
-    fetch('/ticket/get/closed', {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                alert(data.error);
-            } else {
-                document.querySelector('.all-tickets').innerHTML = '';
-                data.forEach(ticket => {
-                    const ticketDiv = document.createElement('div');
-                    ticketDiv.setAttribute('onclick', `openTicket("${ticket._id}")`);
-                    ticketDiv.classList.add('ticket');
-                    ticketDiv.innerHTML = `
-                    <div class="infos-ticket">
-                        <img class="ticket-type-img" src="${iconsReference[ticket.category]}">
-                        <h3>Ticket ${ticket._id}<span class="ticket-type">${categories[ticket.category]}</span></h3>
-                        <img class="dots-ticket" src="./assets/dots.svg">
-                    </div>
-                    <h2 class="ticket-title">${ticket.title}</h2>
-                    <p class="ticket-description">${ticket.description}</p>`
-                    document.querySelector('.all-tickets').appendChild(ticketDiv);
-                });
-                refreshInteract();
-            }
-        });
-});
 
 
 document.querySelector('.close-modal-infos').addEventListener('click', () => {
@@ -418,9 +392,7 @@ function openTicket(id) {
     });
 }
 
-document.getElementById('open-ticket').addEventListener('click', () => {
-    LoadTickets();
-});
+
 
 
 
@@ -650,26 +622,6 @@ function search() {
     });
 }
 
-function toggleSelectModal(options) {
-    document.querySelectorAll('.option').forEach(option => {
-        option.remove();
-    });
-    for (const [key, value] of Object.entries(options)) {
-        document.querySelector('.selectMenu').style.display = 'flex';
-        const div = document.createElement('div');
-        div.innerHTML = `<div class="option">
-        <input type="radio" id="${key}" value="${value}">
-        <label for="${value}">${value}</label>
-        </div>`;
-        div.addEventListener('click', () => {
-            document.querySelector('.selectMenu').style.display = 'none';
-            localStorage.setItem('category', key);
-        });
-        document.querySelector('.options-box').appendChild(div);
-    }
-    document.getElementById('categorie').style.display = 'none';
-}
-
 document.querySelectorAll('.options > button').forEach(option => {
     option.addEventListener('click', () => {
         if (option.id == 'notification') {
@@ -723,5 +675,13 @@ document.querySelectorAll('.options > button').forEach(option => {
                 }
             });
         }
+    });
+});
+
+document.querySelectorAll('.dropdown-content').forEach(content => {
+    content.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown-content').forEach(content => {
+            content.classList.remove('open-modal');
+        });
     });
 });

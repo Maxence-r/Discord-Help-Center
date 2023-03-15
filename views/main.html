@@ -28,12 +28,6 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <div onclick="toggleLateral()" class="open-menu"><img src="./assets/open.svg" class="open-icon"></div>
-    <div class="selectMenu">
-        <fieldset class="options-box">
-            <legend>Select the category of your issue:</legend>
-        </fieldset>
-        
-    </div>
 
     <!-- - - - - - - - - - - - - - - - - -->
 
@@ -121,9 +115,9 @@
     <section class="tickets">
         <div class="selector">
             <ul class="elements">
-                <li id="open-ticket"><img src="./assets/ticket.svg">Tickets</li>
+                <li onclick="LoadTickets('open')" id="open-ticket"><img src="./assets/ticket.svg">Tickets</li>
                 <li class="admin">In progress</li>
-                <li id="closed-ticket">Closed</li>
+                <li onclick="LoadTickets('closed')" id="closed-ticket">Closed</li>
                 <li class="responsive admin">Urgent</li>
             </ul>
             <div class="icos-1">
@@ -138,7 +132,11 @@
         <section class="display-tickets">
             <div class="actions">
                 <button id="new-case" class="new-case interact"><img src="./assets/plus.svg">New case</button>
-                <button class="sorting"><img src="./assets/sort.svg">Sort: Newest</button>
+                <button onclick="document.querySelector('.sort-order').classList.toggle('open-modal')" class="sorting"><img src="./assets/sort.svg">Sort</button>
+                <div id="sorting" class="dropdown-content sort-order">
+                    <a onclick="localStorage.setItem('sorting', 'n'), LoadTickets(localStorage.getItem('status'))">Newest</a>
+                    <a onclick="localStorage.setItem('sorting', 'o'), LoadTickets(localStorage.getItem('status'))">Oldest</a>
+                </div>
             </div>
             <div class="all-tickets">
                 
@@ -205,9 +203,15 @@
             <div class="form">
                 <div class="row-header">
                     <textarea class="issue-title" placeholder="Issue title, be specific in less than 100 characters"></textarea>
-                    <button onclick="toggleSelectModal({'gi': 'General inqueries', 'ir': 'Incident / report', 'pi': 'Payment issues', 'bb': 'Bug / breach report'})" id="categorie" class="sorting">
+                    <button onclick="document.querySelector('.category-menu').classList.toggle('open-modal')" id="categorie" class="sorting">
                         <img id="reduced-ico" src="./assets/sort.svg">Category
                     </button>
+                    <div class="dropdown-content category-menu">
+                        <a onclick="localStorage.setItem('category', 'gi')">General Inqueries</a>
+                        <a onclick="localStorage.setItem('category', 'ir')">Incident or report</a>
+                        <a onclick="localStorage.setItem('category', 'pi')">Payement issues</a>
+                        <a onclick="localStorage.setItem('category', 'bb')">Bug or breach</a>
+                    </div>
                 </div>
                 <textarea class="issue-desc" placeholder="Please explain your issue as specifically as possible. The more clearly you can communicate your issue to us, the faster we will be able to provide a solution."></textarea>
                 <button id="submit" class="new-case">

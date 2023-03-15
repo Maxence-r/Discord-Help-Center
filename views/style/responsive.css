@@ -90,6 +90,9 @@
     .discord {
         width: 95%;
     }
+    .dropdown-content {
+        right: 10px;
+    }
 }
     
 @media screen and (max-height: 737px) {

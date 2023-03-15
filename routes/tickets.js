@@ -25,41 +25,35 @@ router.post('/', auth, limit, ticketChecker, async (req, res) => {
     }
 });
 
-router.get('/get/open', auth, async (req, res) => {
+
+router.post('/get', auth, async (req, res) => {
     try {
-        let tickets;
-
-        if (adminIds.includes(req.user.id)) {
-            tickets = await Ticket.find({ open: true }).sort({"_id": -1});
-        } else {
-            tickets = await Ticket.find({ owner: req.user.id, open: true }).sort({"_id": -1});
-        }
-
-        res.status(200).json(tickets);
+      let tickets;
+      const { status, sorting } = req.body;
+  
+      const query = { owner: req.user.id };
+  
+      if (adminIds.includes(req.user.id)) {
+        delete query.owner;
+      }
+  
+      if (status === 'open') {
+        query.open = true;
+      } else if (status === 'closed') {
+        query.open = false;
+      }
+  
+      const sortQuery = sorting === 'o' ? { _id: 1 } : { _id: -1 };
+      console.log(sortQuery);
+      tickets = await Ticket.find(query).sort(sortQuery);
+  
+      res.status(200).json(tickets);
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Something went wrong' });
+      console.log(err);
+      res.status(500).json({ error: 'Something went wrong' });
     }
-});
-
-
-router.get('/get/closed', auth, async (req, res) => {
-    try {
-        let tickets;
-
-        if (adminIds.includes(req.user.id)) {
-            tickets = await Ticket.find({ open: false }).sort({"_id": -1});
-        } else {
-            tickets = await Ticket.find({ owner: req.user.id, open: false }).sort({"_id": -1});
-        }
-
-        res.status(200).json(tickets);
-    } catch (err) {
-        console.log('got here');
-        console.log(err);
-        res.status(500).json({ error: 'Something went wrong' });
-    }
-});
+  });
+  
 
 
 
