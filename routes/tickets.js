@@ -42,7 +42,6 @@ router.post('/get', auth, async (req, res) => {
       } else if (status === 'closed') {
         query.open = false;
       }
-  
       const sortQuery = sorting === 'o' ? { _id: 1 } : { _id: -1 };
       console.log(sortQuery);
       tickets = await Ticket.find(query).sort(sortQuery);
