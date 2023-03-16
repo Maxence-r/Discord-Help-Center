@@ -460,3 +460,9 @@
 .close-modal-infos:hover {
     background-color: #ff3d00;
 }
+
+.ideasCenter {
+    display: none;
+    background-color: #FF3D00;
+    padding: 20px;
+}

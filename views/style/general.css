@@ -109,8 +109,16 @@ body {
 	border: 1px solid #d7d7d7;
 }
 
-.outline-sh {
+.ideas-center {
 	margin-top: auto;
+	margin-bottom: 10px;
+}
+
+#open-arrow {
+	width: 16px;
+}
+
+.outline-sh {
 	border-radius: 4px;
 	background-color: white;
 	padding: 6px;

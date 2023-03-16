@@ -95,9 +95,12 @@
         <h3 class="nav-desc">Type a question or search keywords</h3>
         <input type="text" class="search-bar" placeholder="Search...">
         <div class="outline">
-            <button onclick="toggleGetStarted()" class="get-started">Getting Started<img src="./assets/gs.svg"></button>
+            <button class="get-started">Getting Started<img src="./assets/gs.svg"></button>
         </div>
         <div class="results"></div>
+        <div class="outline ideas-center">
+            <button onclick="openIdeas()" class="get-started">Ideas Center<img src="./assets/open-arrow.svg" id="open-arrow"></button>
+        </div>
         <div class="outline-sh">
             <div class="create-ticket">
                 <h1 class="sh-title">How can I assist you?</h1>
@@ -116,9 +119,7 @@
         <div class="selector">
             <ul class="elements">
                 <li onclick="LoadTickets('open')" id="open-ticket"><img src="./assets/ticket.svg">Tickets</li>
-                <li class="admin">In progress</li>
                 <li onclick="LoadTickets('closed')" id="closed-ticket">Closed</li>
-                <li class="responsive admin">Urgent</li>
             </ul>
             <div class="icos-1">
                 <img src="./assets/search-ico.svg">
@@ -225,6 +226,12 @@
 
     <section class="article">
         
+    </section>
+
+    <!-- - - - - - - - - - - - - - - - - -->
+
+    <section class="ideasCenter">
+
     </section>
     
 <script src="/socket.io/socket.io.js"></script>

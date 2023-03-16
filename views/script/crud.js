@@ -270,8 +270,8 @@ const hide = {
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
     'close-discord-infos': ['infos-modal'],
-    'my-tickets': ['article', 'display-new-case', 'display-messages', 'infos-modal'],
-    'new-case-button': ['display-tickets', 'article', 'display-messages', 'infos-modal'],
+    'my-tickets': ['article', 'ideasCenter', 'display-new-case', 'display-messages', 'infos-modal'],
+    'new-case-button': ['display-tickets', 'article', 'ideasCenter', 'display-messages', 'infos-modal'],
 }
 
 const optionnal = {
@@ -348,6 +348,7 @@ function refreshInteract() {
 /* MANAGE ALL INTERACTIONS */
 
 function openTicket(id) {
+    document.querySelector('.ideasCenter').style.display = 'none';
     document.querySelector('.selector').style.display = 'none';
     document.querySelector('.selector-active').style.display = 'none';
     document.querySelector('.messages-container').style.display = 'none';
@@ -685,3 +686,8 @@ document.querySelectorAll('.dropdown-content').forEach(content => {
         });
     });
 });
+
+function openIdeas() {
+    document.querySelector('.tickets').style.display = 'none';
+    document.querySelector('.ideasCenter').style.display = 'flex';
+}
