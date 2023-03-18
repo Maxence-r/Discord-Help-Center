@@ -463,6 +463,7 @@
 
 .ideasCenter {
     display: none;
-    background-color: #FF3D00;
-    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 40px;
 }

@@ -95,7 +95,7 @@
         <h3 class="nav-desc">Type a question or search keywords</h3>
         <input type="text" class="search-bar" placeholder="Search...">
         <div class="outline">
-            <button class="get-started">Getting Started<img src="./assets/gs.svg"></button>
+            <button onclick="toggleGetStarted()" class="get-started">Getting Started<img src="./assets/gs.svg"></button>
         </div>
         <div class="results"></div>
         <div class="outline ideas-center">
@@ -123,7 +123,7 @@
             </ul>
             <div class="icos-1">
                 <img src="./assets/search-ico.svg">
-                <img onclick="LoadTickets()" class="responsive" src="./assets/refresh.svg">
+                <img onclick="LoadTickets(localStorage.getItem('status'))" class="responsive" src="./assets/refresh.svg">
             </div>
         </div>
         <div class="selector-active"></div>
@@ -231,7 +231,25 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <section class="ideasCenter">
-
+        <h1 class="ic-title">Ideas Center</h1>
+        <h3 class="ic-description">Submit your ideas to improve Teranga</h3>
+        <div class="trending-container">
+            <h2 class="trending-title">Trending</h2>
+            <div class="container-infos">
+                <p>Infos</p>
+                <p>Upvotes</p>
+                <p>By</p>
+                <p>Sent</p>
+            </div>
+            <div class="box-container">
+                <div class="post">
+                    <div class="post-infos">
+                        <h3>New blueprint block</h3>
+                        <h4>A block who allow the user to generate porn</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     
 <script src="/socket.io/socket.io.js"></script>

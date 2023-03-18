@@ -193,6 +193,7 @@ const categories = {
 }
 
 function LoadTickets(status) {
+    console.log(status)
     localStorage.setItem('status', status)
     document.querySelector('.all-tickets').innerHTML = '<span class="loader"></span>';
     fetch('/ticket/get', {
@@ -556,6 +557,7 @@ function openArticle(id) {
         document.querySelector('.article').innerHTML = '';
         const articleContainer = document.querySelector('.article');
         document.querySelector('.tickets').style.display = 'none';
+        document.querySelector('.ideasCenter').style.display = 'none';
         document.querySelector('.article').style.display = 'block';
         title = document.createElement('h1');
         title.classList.add('art-title');
@@ -688,6 +690,8 @@ document.querySelectorAll('.dropdown-content').forEach(content => {
 });
 
 function openIdeas() {
+    toggleLateral();
     document.querySelector('.tickets').style.display = 'none';
+    document.querySelector('.article').style.display = 'none';
     document.querySelector('.ideasCenter').style.display = 'flex';
 }
