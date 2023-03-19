@@ -878,7 +878,6 @@ body {
 	margin: 0;
 	font-size: 20px;
 	font-weight: 300;
-	margin-bottom: 20px;
 	color: #FF6B00;
 }
 
@@ -902,15 +901,131 @@ body {
 	color: #000000;
 }
 
+.post-infos {
+	width: 90%;
+}
 
 .post-infos > h3 {
 	margin: 0;
 	font-weight: 500;
-	margin-bottom: 10px;
 	color: #000000;
 }
 
+.post-infos > h4 {
+	margin: 0;
+	font-weight: 300;
+	color: #000000;
+}
 .post {
+	cursor: pointer;
+	display: flex;
+	border-radius: 5px;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	background-color: white;
-	padding: 20px;
+	padding: 15px;
+}
+
+.post > p {
+	font-size: 20px;
+	font-weight: 900;
+}
+
+
+
+.post-user-avatar {
+	width: 55px;
+	height: 55px;
+	border-radius: 5px;
+	border: 1px solid #d4d4d4;
+}
+
+.post-user-infos {
+	background-color: white;
+	padding: 15px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.row-low-detail {
+	margin-left: 10px;
+	display: flex;
+	flex-direction: column;
+}
+
+.post-user-name {
+	font-size: 20px;
+	font-weight: 500;
+	color: #000000;
+}
+
+.post-user-discriminator {
+	font-size: 16px;
+	font-weight: 300;
+	color: #000000;
+}
+
+.post-content {
+	width: 100%;
+	font-size: 16px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+	padding: 10px;
+	font-weight: 300;
+	color: #000000;
+	background-color: white;
+}
+
+.post-content > h1 {
+	font-size: 24px;
+	font-weight: 500;
+	color: #000000;
+}
+
+.post-content > h3 {
+	font-size: 18px;
+	font-weight: 300;
+	color: #000000;
+}
+
+.post-input {
+	margin-top: 10px;
+	height: 50px;
+	border: none;
+	outline: none;
+	width: 100%;
+	font-size: 14px;
+	border-radius: 5px;
+	padding: 10px;
+	font-weight: 300;
+	color: #000000;
+	background-color: white;
+	transition: box-shadow 0.2s ease-in-out;
+}
+
+.post-input:focus {
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.post-actions {
+	display: flex;
+	min-width: 150px;
+	flex-direction: column;
+	gap: 10px;
+	margin-left: 10px;
+}
+
+.post-action {
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.post-action > img {
+	width: 15px;
+	margin: 0;
 }

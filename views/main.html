@@ -233,22 +233,45 @@
     <section class="ideasCenter">
         <h1 class="ic-title">Ideas Center</h1>
         <h3 class="ic-description">Submit your ideas to improve Teranga</h3>
-        <div class="trending-container">
-            <h2 class="trending-title">Trending</h2>
-            <div class="container-infos">
-                <p>Infos</p>
-                <p>Upvotes</p>
-                <p>By</p>
-                <p>Sent</p>
-            </div>
-            <div class="box-container">
-                <div class="post">
-                    <div class="post-infos">
-                        <h3>New blueprint block</h3>
-                        <h4>A block who allow the user to generate porn</h4>
-                    </div>
+        <div class="ic-container">
+            <div class="post-container">
+                <h2 class="trending-title">Trending</h2>
+                <div class="container-infos">
+                    <p>Infos</p>
+                    <p>Upvotes</p>
+                </div>
+                <div class="box-container trending">
                 </div>
             </div>
+            <div class="post-container">
+                <h2 class="trending-title">Newest</h2>
+                <div class="container-infos">
+                    <p>Infos</p>
+                    <p>Upvotes</p>
+                </div>
+                <div class="box-container newest">
+                </div>
+            </div>
+        </div>
+        <div class="post-container">
+            <div class="post-user-infos">
+                <img class="post-user-avatar" src="./assets/default.png">
+                <div class="row-low-detail">
+                    <h3 class="post-user-name">User</h3>
+                    <h3 class="post-user-discriminator">Discord User</h3>
+                </div> 
+            </div>
+            <div class="post-flex">
+               <div class="post-content">
+                    <h1>Title</h1>
+                    <h3>Description</h3>
+               </div>
+               <div class="post-actions">
+                    <button class="post-action new-case interact">Upvote<img src="./assets/plus.svg"></button>
+                    <button class="post-action sorting interact">Flag<img src="./assets/flag.svg"></button>
+               </div>
+            </div>
+            <input class="post-input" placeholder="Add a comment... (Press enter to send)"></input>
         </div>
     </section>
     

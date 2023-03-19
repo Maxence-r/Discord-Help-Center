@@ -17,11 +17,21 @@ const postSchema = mongoose.Schema({
         maxLength: 5000,
         minLength: 10
     },
+    votes: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     type: {
         type: String,
         required: true,
         default: "default"
     },
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
+    }
 });
 
 

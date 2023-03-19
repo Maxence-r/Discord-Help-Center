@@ -54,7 +54,7 @@ router.post('/infos', async (req, res) => {
     }
     const freponse = await response.json();
     if (adminIds.includes(freponse.id)) {
-       freponse.admin = true;
+        freponse.admin = true;
     } else {
         freponse.admin = false;
     }

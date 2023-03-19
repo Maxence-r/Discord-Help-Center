@@ -2,6 +2,13 @@
     body {
         padding: 10px;
     }
+    .post-flex {
+        flex-direction: column;
+    }
+    .post-actions {
+        margin-top: 10px;
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 1200px) {

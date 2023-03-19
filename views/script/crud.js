@@ -694,4 +694,43 @@ function openIdeas() {
     document.querySelector('.tickets').style.display = 'none';
     document.querySelector('.article').style.display = 'none';
     document.querySelector('.ideasCenter').style.display = 'flex';
+    fetch('/post', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.newest').innerHTML = '';
+            document.querySelector('.trending').innerHTML = '';
+            data.forEach(post => {
+                const div = document.createElement('div');
+                div.setAttribute('onclick', `openPost('${post._id}')`);
+                div.classList.add('post');
+                div.innerHTML = `<div class="post-infos"><h3>${post.title}</h3><h4>${post.description}</h4></div><p>${post.votes}</p>`
+                document.querySelector('.newest').appendChild(div);
+            });
+        });
+}
+
+function openPost(id) {
+    fetch(`/post/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.post-content > h1').innerHTML  = data.title;
+            document.querySelector('.post-content > h3').innerHTML  = data.description;
+            fetch('/api/discord/get', {
+                method: 'POST',
+                body: JSON.stringify({ id: data.owner }),
+                headers: { 'Content-Type': 'application/json' }
+                })
+                .then(response => response.json())
+                .then(infos => {
+                    document.querySelector('.post-user-avatar').src = `https://cdn.discordapp.com/avatars/${infos.id}/${infos.avatar}.png`;
+                    document.querySelector('.post-user-name').innerHTML = infos.username;
+
+                });
+        });
 }

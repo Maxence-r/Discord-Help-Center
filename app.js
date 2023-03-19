@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const DiscordLogin = require('./routes/DiscordLogin');
 const Tickets = require('./routes/tickets');
 const Articles = require('./routes/articles');
+const Posts = require('./routes/posts');
 // Definition des outils
 app.use(cookieParser());
 app.use(express.json());
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/support-center',
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use('/post', Posts);
 app.use('/articles', Articles);
 app.use('/api/discord', DiscordLogin);
 app.use('/ticket', Tickets);
