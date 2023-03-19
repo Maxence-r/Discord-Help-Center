@@ -396,7 +396,8 @@ function openTicket(id) {
 }
 
 
-
+function onClick(e) {
+}
 
 
 document.querySelector('.send-button').addEventListener('click', () => {
