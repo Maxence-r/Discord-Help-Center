@@ -258,6 +258,8 @@ document.querySelector('.close-modal-infos').addEventListener('click', () => {
 /* MANAGE ALL INTERACTIONS */
 const todp = {
     'new-case': ['display-new-case'],
+    'close-post': ['ic-container'],
+    'post': ['open-post-container'],
     'cancel': ['display-tickets'],
     'closed': ['display-tickets', 'selector', 'selector-active'],
     'infos': ['infos-modal'],
@@ -266,7 +268,9 @@ const todp = {
     'new-case-button': ['display-new-case', 'tickets', 'selector', 'selector-active'],
 }
 const hide = {
+    'close-post': ['open-post-container'],
     'new-case': ['display-tickets'],
+    'post': ['ic-container'],
     'cancel': ['display-new-case'],
     'closed': ['display-messages', 'infos-modal'],
     'infos': ['messages-container', 'row-user-inputs'],
@@ -295,9 +299,6 @@ function removeListeners() {
     elements.forEach(function (element) {
         element.removeEventListener('click', onClick);
     });
-}
-
-function onClick() {
 }
 
 let elements = document.querySelectorAll('.interact');
@@ -705,10 +706,12 @@ function openIdeas() {
             data.forEach(post => {
                 const div = document.createElement('div');
                 div.setAttribute('onclick', `openPost('${post._id}')`);
-                div.classList.add('post');
+                div.setAttribute('id', "post");
+                div.classList.add('post', 'interact');
                 div.innerHTML = `<div class="post-infos"><h3>${post.title}</h3><h4>${post.description}</h4></div><p>${post.votes}</p>`
                 document.querySelector('.newest').appendChild(div);
             });
+            refreshInteract();
         });
 }
 

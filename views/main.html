@@ -231,7 +231,7 @@
     <!-- - - - - - - - - - - - - - - - - -->
 
     <section class="ideasCenter">
-        <h1 class="ic-title">Ideas Center</h1>
+        <h1 class="ic-title">Ideas Center<button id="new-post" class="sorting interact">New post</button></h1>
         <h3 class="ic-description">Submit your ideas to improve Teranga</h3>
         <div class="ic-container">
             <div class="post-container">
@@ -253,7 +253,7 @@
                 </div>
             </div>
         </div>
-        <div class="post-container">
+        <div class="open-post-container">
             <div class="post-user-infos">
                 <img class="post-user-avatar" src="./assets/default.png">
                 <div class="row-low-detail">
@@ -268,7 +268,7 @@
                </div>
                <div class="post-actions">
                     <button class="post-action new-case interact">Upvote<img src="./assets/plus.svg"></button>
-                    <button class="post-action sorting interact">Flag<img src="./assets/flag.svg"></button>
+                    <button id="close-post" class="post-action sorting interact">Back<img src="./assets/back-post.svg"></button>
                </div>
             </div>
             <input class="post-input" placeholder="Add a comment... (Press enter to send)"></input>

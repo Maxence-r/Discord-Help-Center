@@ -868,6 +868,8 @@ body {
 }
 
 .ic-title {
+	display: flex;
+	align-items: center;
 	margin: 0;
 	font-size: 50px;
 	font-weight: 500;
@@ -953,6 +955,10 @@ body {
 .row-low-detail {
 	margin-left: 10px;
 	display: flex;
+	flex-direction: column;
+}
+
+.ic-container {
 	flex-direction: column;
 }
 
