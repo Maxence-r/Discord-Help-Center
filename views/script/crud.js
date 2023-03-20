@@ -258,6 +258,8 @@ document.querySelector('.close-modal-infos').addEventListener('click', () => {
 /* MANAGE ALL INTERACTIONS */
 const todp = {
     'new-case': ['display-new-case'],
+    'new-post': ['new-post-container'],
+    'close-new-post': ['ic-container'],
     'close-post': ['ic-container'],
     'post': ['open-post-container'],
     'cancel': ['display-tickets'],
@@ -269,6 +271,8 @@ const todp = {
 }
 const hide = {
     'close-post': ['open-post-container'],
+    'close-new-post': ['new-post-container'],
+    'new-post': ['ic-container', 'open-post-container'],
     'new-case': ['display-tickets'],
     'post': ['ic-container'],
     'cancel': ['display-new-case'],
@@ -738,3 +742,23 @@ function openPost(id) {
                 });
         });
 }
+
+document.getElementById('submit-post').addEventListener('click', () => {
+    const title = document.getElementById('post-title').value;
+    const description = document.getElementById('post-description').value;
+    fetch('/post/add', {
+        method: 'POST',
+        body: JSON.stringify({ title, description }),
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(!data.message) {
+                alert('An error occured, please try again later.');
+            } else {
+                document.getElementById('close-new-post').click();
+                openIdeas()
+                toggleLateral();
+            }
+        });
+});

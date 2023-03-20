@@ -9,18 +9,18 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true,
         maxLength: 2000,
-        minLength: 10
+        minLength: 5
     },
     description: {
         type: String,
         required: true,
         maxLength: 5000,
-        minLength: 10
+        minLength: 5
     },
     votes: {
-        type: Number,
+        type: Array,
         required: true,
-        default: 0
+        default: []
     },
     type: {
         type: String,
