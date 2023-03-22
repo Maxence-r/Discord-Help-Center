@@ -73,7 +73,7 @@
     }
     .row-user-inputs {
         min-height: 70px;
-        margin-bottom: 70px;
+        margin-bottom: 0px;
     }
     .form {
         overflow-y: scroll;
@@ -99,6 +99,9 @@
     }
     .dropdown-content {
         right: 10px;
+    }
+    body {
+        height: calc(100vh - 60px);
     }
 }
     

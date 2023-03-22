@@ -720,27 +720,28 @@ function openIdeas() {
         });
 }
 
-function openPost(id) {
-    fetch(`/post/${id}`, {
+async function openPost(id) {
+    let ReponseInfos = await fetch(`/post/${id}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
         })
-        .then(response => response.json())
-        .then(data => {
-            document.querySelector('.post-content > h1').innerHTML  = data.title;
-            document.querySelector('.post-content > h3').innerHTML  = data.description;
-            fetch('/api/discord/get', {
-                method: 'POST',
-                body: JSON.stringify({ id: data.owner }),
-                headers: { 'Content-Type': 'application/json' }
-                })
-                .then(response => response.json())
-                .then(infos => {
-                    document.querySelector('.post-user-avatar').src = `https://cdn.discordapp.com/avatars/${infos.id}/${infos.avatar}.png`;
-                    document.querySelector('.post-user-name').innerHTML = infos.username;
+    let PostInfos = await ReponseInfos.json();
+    if (PostInfos.owner === localStorage.getItem('id')) {
+        document.getElementById('delete-post').style.display = 'flex';
+    }
+    localStorage.setItem('postId', PostInfos._id);
+    document.querySelector('.post-content > h1').innerHTML  = PostInfos.title;
+    document.querySelector('.post-content > h3').innerHTML  = PostInfos.description;
 
-                });
-        });
+
+    let ResponseDiscord = await fetch('/api/discord/get', {
+        method: 'POST',
+        body: JSON.stringify({ id: PostInfos.owner }),
+        headers: { 'Content-Type': 'application/json' }
+        })
+    let DiscordInfos = await ResponseDiscord.json();
+    document.querySelector('.post-user-avatar').src = `https://cdn.discordapp.com/avatars/${DiscordInfos.id}/${DiscordInfos.avatar}.png`;
+    document.querySelector('.post-user-name').innerHTML = DiscordInfos.username;
 }
 
 document.getElementById('submit-post').addEventListener('click', () => {
@@ -753,12 +754,43 @@ document.getElementById('submit-post').addEventListener('click', () => {
         })
         .then(response => response.json())
         .then(data => {
-            if(!data.message) {
-                alert('An error occured, please try again later.');
+            console.log(data);
+            if(!data.id) {
+                alert('Fill all the fields, don\'t use special characters such as < or >');
             } else {
                 document.getElementById('close-new-post').click();
                 openIdeas()
                 toggleLateral();
+            }
+        });
+});
+
+document.getElementById('upvote').addEventListener('click', () => {
+    fetch(`/post/upvote/${localStorage.getItem('postId')}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(!data.message) {
+                alert('An error occured, please try again later.');
+            } else {
+                alert(data.message);
+            }
+        });
+});
+
+document.getElementById('delete-post').addEventListener('click', () => {
+    fetch(`/post/delete/${localStorage.getItem('postId')}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(!data.message) {
+                alert('An error occured, please try again later.');
+            } else {
+                alert(data.message);
             }
         });
 });
