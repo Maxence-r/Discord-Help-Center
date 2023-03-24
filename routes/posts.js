@@ -2,7 +2,7 @@ const express = require('express');
 const auth = require('../middlewares/auth');
 const router = express.Router();
 const Post = require('../models/post');
-
+const Comment = require('../models/comments');
 router.get('/', (req, res) => {
     Post.find().sort({date: -1})
         .then((posts) => {
@@ -66,5 +66,36 @@ router.post('/delete/:id', auth, (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
+router.post('/comment', auth, (req, res) => {
+    Post.find({_id: req.body.postId})
+        .then(post => {
+            if (post) {
+                const comment = new Comment({
+                    owner: req.user.id,
+                    content: req.body.content,
+                    post: req.body.postId
+                });
+                comment.save()
+                    .then((comment) => {
+                        res.json({message: "Comment created", id: comment._id});
+                    })
+                    .catch(err => res.status(400).json('Error: ' + err));
+            } else {
+                res.status(400).json('Error: Post not found');
+            }
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.get('/comments/:id', (req, res) => {
+    Comment.find({post: req.params.id}).sort({date: -1})
+        .then(comments => {
+            res.json(comments);
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+        
 
 module.exports = router;

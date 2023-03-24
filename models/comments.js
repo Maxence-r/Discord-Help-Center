@@ -11,6 +11,11 @@ const commentSchema = mongoose.Schema({
         required: true,
         minLenght: 1
     },
+    post : {
+        type: String,
+        required: true,
+        minLenght: 1
+    },
     date: {
         type: Date,
         required: true,

@@ -742,6 +742,32 @@ async function openPost(id) {
     let DiscordInfos = await ResponseDiscord.json();
     document.querySelector('.post-user-avatar').src = `https://cdn.discordapp.com/avatars/${DiscordInfos.id}/${DiscordInfos.avatar}.png`;
     document.querySelector('.post-user-name').innerHTML = DiscordInfos.username;
+
+    let ResponseComments = await fetch(`/post/comments/${id}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+        })
+    let Comments = await ResponseComments.json();
+    document.querySelector('.comments-container').innerHTML = '';
+    Comments.forEach(comment => {
+        fetch('/api/discord/get', {
+                method: 'POST',
+                body: JSON.stringify({ id: comment.owner }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+            const div = document.createElement('div');
+            div.classList.add('comment');
+            div.innerHTML = `
+            <img class="comment-avatar" src="https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.png">
+            <div class="comment-content">
+                <h3 class="comment-name">${data.username}</h3>
+                <p class="comment-text">${comment.content}</p>
+            </div>`
+            document.querySelector('.comments-container').appendChild(div);
+            });
+    });
 }
 
 document.getElementById('submit-post').addEventListener('click', () => {
@@ -793,4 +819,23 @@ document.getElementById('delete-post').addEventListener('click', () => {
                 alert(data.message);
             }
         });
+});
+
+document.querySelector('.post-input').addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        fetch('/post/comment', {
+            method: 'POST',
+            body: JSON.stringify({ postId: localStorage.getItem('postId'), content: document.querySelector('.post-input').value }),
+            headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(!data.message) {
+                    alert('An error occured, please try again later.');
+                } else {
+                    document.querySelector('.post-input').value = '';
+                    openPost(localStorage.getItem('postId'));
+                }
+            });
+    }
 });
