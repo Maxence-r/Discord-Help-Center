@@ -1,7 +1,7 @@
 {
-    "adminIds": ["632246754556903477", "397680976387375104"],
-    "botToken": "ODc3ODc5ODMxODIyNDk1ODA3.GbeR1d.wNizIxcLMnWJ3lmETaK0a893diRuPbLQA8xQ-4",
-    "authKey": "HuOrZlvtW3LNnL17x8u3wZ2v74sfg484Y6UgjY4anUSRiyCZbiMGP9zbNWTT9KnHxai6Ke6ooeiDrTA74OkPxYEtR76hH7IBdcZ7xXWWttmzcj3j2UnNNQlliYQKNtoytIV5CpiiVl5FZGSRA6K2cNbNrEF8ganrEReeABixsmj17tqL4gsyL40RUxLkErDBwYuJqa1I37cpImeNMlXdCaKzXfujJjqBSMMbEvEHqT1uH1hwowqqfC9Zb9PlJJLY",
+    "adminIds": [],
+    "botToken": "******",
+    "authKey": "*******",
     "category": ["gi", "ir", "pi", "bb"],
     "origin": "http://localhost:3000"
 }
